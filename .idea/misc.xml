@@ -4,10 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/activity_main.xml" value="0.29635416666666664" />
+        <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/drawable/rect_active_bg.xml" value="0.2125" />
+        <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/drawable/rect_solid_blue_2.xml" value="0.2125" />
+        <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/layout/activity_main.xml" value="0.20471014492753623" />
+        <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/layout/content_main.xml" value="0.2953125" />
+        <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/layout/dialog_active.xml" value="0.20471014492753623" />
+        <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/layout/item_device_info.xml" value="0.20471014492753623" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

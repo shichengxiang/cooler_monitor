@@ -48,6 +48,9 @@ dependencies {
     implementation files('libs/modbus4Android-1.2.jar')
     implementation files('libs\\jlibmodbus-1.2.9.7.jar')
     testImplementation 'junit:junit:4.13.2'
-    implementation 'com.digitalpetri.modbus:modbus-slave-tcp:1.2.0'
+//    implementation 'com.digitalpetri.modbus:modbus-slave-tcp:1.2.0'
 //    implementation 'com.intelligt.modbus:jlibmodbus:1.2.9.7'
+    implementation 'com.tencent:mmkv:1.2.13'//存储
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2' //状态栏 沉浸式
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
 }
