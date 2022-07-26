@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/rect_active_bg">
+    android:background="@drawable/box1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:text="A001"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/txt_green"
+            android:textColor="@color/txt_mark"
             android:textSize="20dp"/>
         <TextView
             android:id="@+id/tv_line12"
@@ -28,10 +28,10 @@
             android:layout_weight="2"
             android:lines="1"
             android:layout_marginRight="10dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="10dp"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:background="@color/yellow_eda718"
+            android:background="@drawable/rect_box_normal"
             android:gravity="center"/>
     </LinearLayout>
     <LinearLayout
@@ -47,7 +47,7 @@
             android:text="温度"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/txt_green"
+            android:textColor="@color/txt_mark"
             android:textSize="20dp"/>
         <TextView
             android:id="@+id/tv_line22"
@@ -57,10 +57,10 @@
             android:layout_weight="2"
             android:lines="1"
             android:layout_marginRight="10dp"
-            android:layout_marginVertical="20dp"
-            android:textColor="@color/white"
+            android:layout_marginVertical="10dp"
+            android:textColor="@color/txt_green"
             android:textSize="20dp"
-            android:background="@color/yellow_eda718"
+            android:background="@drawable/rect_box_normal"
             android:gravity="center"/>
     </LinearLayout>
     <LinearLayout
@@ -76,7 +76,7 @@
             android:text="有/无"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/txt_green"
+            android:textColor="@color/txt_mark"
             android:textSize="20dp"/>
         <TextView
             android:id="@+id/tv_line32"
@@ -88,8 +88,8 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:layout_marginRight="10dp"
-            android:layout_marginVertical="20dp"
-            android:background="@color/yellow_eda718"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/rect_box_normal"
             android:gravity="center"/>
     </LinearLayout>
     <LinearLayout
@@ -105,7 +105,7 @@
             android:text="状态"
             android:lines="1"
             android:gravity="center"
-            android:textColor="@color/txt_green"
+            android:textColor="@color/txt_mark"
             android:textSize="20dp"/>
         <TextView
             android:id="@+id/tv_line42"
@@ -115,10 +115,10 @@
             android:layout_weight="2"
             android:lines="1"
             android:layout_marginRight="10dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="10dp"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:background="@color/yellow_eda718"
+            android:background="@drawable/rect_box_normal"
             android:gravity="center"/>
     </LinearLayout>
 

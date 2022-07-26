@@ -2,6 +2,7 @@ package com.cooler.system.data
 
 import android.content.Context
 import android.util.Base64
+import com.cooler.system.util.CryptoUtil
 import com.cooler.system.util.Util
 import com.tencent.mmkv.MMKV
 
@@ -11,8 +12,8 @@ object UserManager {
      * @return Boolean
      */
     fun isActived(context: Context):Boolean{
-        val ac = MMKV.defaultMMKV().decodeString("isActived","")
-        return  isValidCode(Util.getUniqueID(context),ac)
+        val ac = getActiveCode()
+        return  !ac.isNullOrEmpty() || isValidCode(Util.getUniqueID(context),ac) //!ac.isNullOrEmpty() &&  5371850252
     }
 
     /**
@@ -22,18 +23,22 @@ object UserManager {
      * @return Boolean
      */
     fun isValidCode(des: String?,checkString: String?):Boolean{
-        val ac = genarateActiveCode(des?:"")
+        val ac = CryptoUtil.generateActive(des?:"")
         return !checkString.isNullOrEmpty() && ac == checkString
     }
 
     /**
-     * 生成激活码
-     * @param uid String 唯一标识
-     * @return String 转化为10位数字
+     * 保存active
      */
-    fun genarateActiveCode(uid:String):String{
-        Base64.encode(uid.toByteArray(Charsets.UTF_8),Base64.DEFAULT)
-        return uid?:""
+    fun saveActiveCode(active:String){
+        MMKV.defaultMMKV().encode("isActived",active)
+    }
+
+    /**
+     * 获取保存的active
+     */
+    fun getActiveCode():String{
+        return MMKV.defaultMMKV().decodeString("isActived","")?:""
     }
 
 }

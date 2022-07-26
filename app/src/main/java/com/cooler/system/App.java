@@ -2,9 +2,11 @@ package com.cooler.system;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.ExecutorService;
@@ -18,13 +20,17 @@ public class App extends Application {
     }
     private static ExecutorService service;
     private static Handler mainHandler;
-
+    private static int sWidth=0;
     @Override
     public void onCreate() {
         super.onCreate();
         context = this;
 
         MMKV.initialize(this);
+        sWidth = Math.max(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
+    }
+    public static int getScreenWidth(){
+        return sWidth;
     }
     public static ExecutorService getExecutor(){
         if(service == null){

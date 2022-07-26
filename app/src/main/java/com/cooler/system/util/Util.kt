@@ -5,10 +5,12 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import com.cooler.system.App
 import com.cooler.system.BuildConfig
+import com.tencent.mmkv.MMKV
 import java.lang.NumberFormatException
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat
@@ -19,10 +21,10 @@ object Util {
     private var mToast: Toast? = null
     private var mainHandler: Handler? = null
     private var toastMsg: String? = null
+
     @JvmStatic
     fun log(msg: String) {
-        if (BuildConfig.DEBUG)
-            Log.d("cooler == ", msg)
+        if (BuildConfig.DEBUG) Log.i("cooler== ", msg)
     }
 
     /**
@@ -45,8 +47,7 @@ object Util {
     fun toast(msg: String, time: Int = Toast.LENGTH_SHORT) {
         synchronized(Any::class.java) {
             if (Looper.myLooper() != Looper.getMainLooper()) {
-                if (mainHandler == null)
-                    mainHandler = Handler(Looper.getMainLooper())
+                if (mainHandler == null) mainHandler = Handler(Looper.getMainLooper())
                 mainHandler?.post {
                     show(msg, time)
                 }
@@ -67,17 +68,28 @@ object Util {
     }
 
     fun getUniqueID(context: Context): String? {
-        var id: String? = null
-        val androidId =
-            Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
-        if (androidId != null && "9774d56d682e549c" != androidId) {
-            try {
-                val uuid = UUID.nameUUIDFromBytes(androidId.toByteArray(charset("utf8")))
-                id = uuid.toString()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        val uuid = MMKV.defaultMMKV().decodeString("uuid", "")
+        if (!uuid.isNullOrEmpty()) {
+            return uuid
         }
-        return if (id.isNullOrEmpty()) UUID.randomUUID().toString() else id
+        var id: String? = null
+        val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
+        log("get id = $androidId")
+        var hashMap = HashMap<Any, Any>();
+        try {
+            hashMap.put("AndroidId", Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID))
+            hashMap.put("MacAddress", "maccccccccccccccc")
+            hashMap.put("Manufacturer", Build.MANUFACTURER)
+            hashMap.put("Device", Build.DEVICE)
+            hashMap.put("Model", Build.MODEL)
+            hashMap.put("Hardware", Build.HARDWARE)
+        } catch (exception: Exception) {
+            exception.printStackTrace();
+        }
+        var str = hashMap.toString()
+        var b =   Base64.encodeToString(str.toByteArray(Charsets.UTF_8),Base64.DEFAULT).trim()
+        var res =  if (b.length>10) b.substring(0,10) else b
+        MMKV.defaultMMKV().encode("uuid",res)
+        return res
     }
 }

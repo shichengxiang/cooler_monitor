@@ -3,6 +3,7 @@ package com.cooler.system.modbus
 import android.os.Handler
 import android.os.Looper
 import com.cooler.system.log
+import com.cooler.system.util.CryptoUtil
 import com.intelligt.modbus.jlibmodbus.Modbus
 import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException
 import com.intelligt.modbus.jlibmodbus.slave.ModbusSlaveTCP
@@ -62,12 +63,12 @@ class ModbusTools : TcpListener {
                 modbusSlave?.listen()
                 modbusSlave?.addListener(object : FrameEventListener {
                     override fun frameSentEvent(p0: FrameEvent?) {
-//                        log("onFrameSendEvent")
+                        log("onFrameSendEvent ${CryptoUtil.byte2String(p0?.bytes?: byteArrayOf())}")
 
                     }
 
                     override fun frameReceivedEvent(p0: FrameEvent?) {
-//                        log("OnFrameReceivedEvent")
+                        log("OnFrameReceivedEvent ${CryptoUtil.byte2String(p0?.bytes?: byteArrayOf())}")
                     }
                 })
             }catch (e: ModbusIOException){

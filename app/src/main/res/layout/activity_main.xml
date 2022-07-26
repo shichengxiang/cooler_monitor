@@ -7,16 +7,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
-    android:background="@color/blue_4571E7">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="设备运行状态检测系统"
-        android:textColor="@color/txt_green"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"
-        android:paddingVertical="10dp"/>
+    android:background="@mipmap/background">
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

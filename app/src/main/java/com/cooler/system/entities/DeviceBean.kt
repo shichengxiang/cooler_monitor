@@ -6,9 +6,9 @@ class DeviceBean {
     //名字
     var name:String?=null
     //温度
-    var temperature:String?=null
+    var temperature:Float?=null
     //有/无
-    var isHas:Int?=null
+    var isHas:Int?=0
     //状态
-    var state:Int?=null
+    var state:Int?=0
 }
