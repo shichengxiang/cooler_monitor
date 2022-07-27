@@ -1,12 +1,9 @@
 package com.cooler.system.util
 
-import android.icu.number.IntegerWidth
 import com.cooler.system.entities.DeviceBean
 import com.cooler.system.log
 import com.tencent.mmkv.MMKV
 import java.math.BigInteger
-import java.nio.charset.Charset
-import java.nio.charset.StandardCharsets
 
 object ConvertBean {
     const val address = 0

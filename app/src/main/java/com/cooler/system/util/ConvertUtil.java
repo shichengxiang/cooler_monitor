@@ -58,11 +58,16 @@ public class ConvertUtil {
         StringBuffer bf = new StringBuffer();
         for (int i : a) {
             String hex = Integer.toHexString(i);
-            if(hex.length()<2) break;
+            if(hex.length()<1) break;
             bf.append("\\u");
-            for (int j=hex.length();j>=2;j-=2){
-                    String s = hex.substring(j-2, j);
-                    bf.append(s);
+            for (int j=hex.length();j>=1;j-=2){
+                    if(j==1){
+                        String s = hex.substring(0, j);
+                        bf.append("0").append(s);
+                    }else {
+                        String s = hex.substring(j-2, j);
+                        bf.append(s);
+                    }
             }
         }
         return bf.toString();

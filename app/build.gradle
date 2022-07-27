@@ -45,7 +45,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    implementation files('libs/modbus4Android-1.2.jar')
     implementation files('libs\\jlibmodbus-1.2.9.7.jar')
     testImplementation 'junit:junit:4.13.2'
 //    implementation 'com.digitalpetri.modbus:modbus-slave-tcp:1.2.0'

@@ -72,24 +72,27 @@ object Util {
         if (!uuid.isNullOrEmpty()) {
             return uuid
         }
-        var id: String? = null
-        val androidId = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
-        log("get id = $androidId")
-        var hashMap = HashMap<Any, Any>();
+        var bf = StringBuffer()
         try {
-            hashMap.put("AndroidId", Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID))
-            hashMap.put("MacAddress", "maccccccccccccccc")
-            hashMap.put("Manufacturer", Build.MANUFACTURER)
-            hashMap.put("Device", Build.DEVICE)
-            hashMap.put("Model", Build.MODEL)
-            hashMap.put("Hardware", Build.HARDWARE)
+            bf.append(
+                Settings.Secure.getString(
+                    context.contentResolver,
+                    Settings.Secure.ANDROID_ID
+                )
+            )
+                .append(Build.ID)
+                .append(Build.MANUFACTURER)
+                .append(Build.DEVICE)
+                .append(Build.MODEL)
+                .append(Build.HARDWARE)
         } catch (exception: Exception) {
             exception.printStackTrace();
         }
-        var str = hashMap.toString()
-        var b =   Base64.encodeToString(str.toByteArray(Charsets.UTF_8),Base64.DEFAULT).trim()
-        var res =  if (b.length>10) b.substring(0,10) else b
-        MMKV.defaultMMKV().encode("uuid",res)
+        var str = bf.toString().trim()
+        var b = Base64.encodeToString(str.toByteArray(Charsets.UTF_8), Base64.DEFAULT).trim()
+        var res = if (b.length > 10) b.substring(0, 10) else b
+        res = res.uppercase(Locale.ROOT)
+        MMKV.defaultMMKV().encode("uuid", res)
         return res
     }
 }

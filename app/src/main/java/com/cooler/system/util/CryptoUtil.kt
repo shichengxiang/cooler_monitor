@@ -14,26 +14,26 @@ object CryptoUtil {
     fun generateActive(uid: String): String {
         log("android_id == $uid")
         val base64Str = Base64.encodeToString(uid.toByteArray(Charsets.UTF_8), Base64.DEFAULT).trim()
-        log("base64 = $base64Str")
+//        log("base64 = $base64Str")
         val md = MessageDigest.getInstance("MD5")
 //        Base64.encodeToString(md.digest(base64Str.toByteArray(Charsets.UTF_8)))
         var md5Str =
             byte2String(md.digest((base64Str + md5_key).toByteArray(Charsets.UTF_8)))
-        log("md5 = $md5Str")
+//        log("md5 = $md5Str")
         val pre10 = if (md5Str.length >= 10) md5Str.substring(0, 10) else md5Str
 //        string2ASCII(pre10)
         val last15 = if (md5Str.length >= 15) md5Str.substring(md5Str.length - 15) else md5Str
 //        string2ASCII(last15)
         val shaStr = byte2String(MessageDigest.getInstance("SHA-1")
             .digest((string2ASCII(pre10) + sha1_key + string2ASCII(last15)).toByteArray(Charsets.UTF_8)))
-        log("加密 sha1 =$shaStr")
+//        log("加密 sha1 =$shaStr")
         val ascii = string2ASCII(shaStr)
-        log("ascii= $ascii")
+//        log("ascii= $ascii")
         val res = ascii.substring(0, 2) + ascii.substring(20, 22) + ascii.substring(
             39,
             41
         ) + ascii.substring(55, 57) + ascii.substring(ascii.length - 2)
-        log("cypto res= $res")
+//        log("cypto res= $res")
         return res
     }
 
