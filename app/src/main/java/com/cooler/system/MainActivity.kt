@@ -43,12 +43,16 @@ class MainActivity : AppCompatActivity(), TcpListener {
             showActiveDialog()
         } else {
             initServer()
+            bind.tvIp.text= "IP : ${Util.getLocalIp(this)}"
+
         }
     }
 
     private fun initServer() {
         ModbusTools.getInstance().addListener(this).start(9999, 1)
         mAdapter?.setList(ConvertBean.mCacheInfo)
+//        mAdapter?.data?.get(0)?.code= "JT0001"
+//        mAdapter?.notifyItemChanged(0,"0")
     }
 
     override fun onDestroy() {
@@ -63,12 +67,12 @@ class MainActivity : AppCompatActivity(), TcpListener {
     private fun showActiveDialog() {
         if (mActiveDialog == null) {
             mActiveDialog = ActiveDialogUtil.show(this) { activeCode ->
-                mActiveDialog?.dismiss()
                 val b = UserManager.isValidCode(Util.getUniqueID(this), activeCode)
                 if (b) {
                     UserManager.saveActiveCode(activeCode)
                     mActiveDialog?.dismiss()
                     initServer()
+                    toast("激活成功")
 //                    ModbusTools.getInstance().start(6000,100)
                 } else {
                     toast("激活失败")

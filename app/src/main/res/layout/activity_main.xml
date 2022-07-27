@@ -8,10 +8,16 @@
     tools:context=".MainActivity"
     android:fitsSystemWindows="true"
     android:background="@mipmap/background">
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50dp"/>
-
+    <TextView
+        android:id="@+id/tv_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="90px"
+        android:gravity="bottom"
+        android:text="当前ip："
+        android:textSize="15dp"
+        android:textColor="@color/gray_7E828A"
+        android:layout_marginStart="14dp"
+        android:layout_marginBottom="20px"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

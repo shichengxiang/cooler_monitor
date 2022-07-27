@@ -42,10 +42,15 @@ public class ConvertUtil {
         StringBuffer bf = new StringBuffer();
         for (int i : a) {
             String hex = Integer.toHexString(i);
-            if(hex.length()<2) break;
+            if(hex.length()<1) break;
             for (int j=0;j<hex.length();j+=2){
-                if(j+2<=hex.length()){
+                if(j+2>=hex.length()){
                     String s = hex.substring(j, j + 2);
+                    Util.log("hex==  "+s);
+                    int b =Integer.parseInt(s,16);
+                    if(b>=32 && b<=127) bf.append((char) b);
+                }else{
+                    String s = hex.substring(j, j + 1);
                     Util.log("hex==  "+s);
                     int b =Integer.parseInt(s,16);
                     if(b>=32 && b<=127) bf.append((char) b);

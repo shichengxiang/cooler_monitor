@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -24,11 +23,11 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
         return super.createBaseViewHolder(view)
     }
     override fun convert(holder: BaseViewHolder, item: DeviceBean) {
-        holder.getView<AppCompatTextView>(R.id.tv_line11).text =item.code
-        holder.getView<AppCompatTextView>(R.id.tv_line12).text =item.name
-        val tvTemp = holder.getView<AppCompatTextView>(R.id.tv_line22)
+        holder.getView<TextView>(R.id.tv_line11).text =item.code
+        holder.getView<TextView>(R.id.tv_line12).text =item.name
+        val tvTemp = holder.getView<TextView>(R.id.tv_line22)
         tvTemp.text = String.format("%.1f℃",item.temperature?.div(10)?:0f)
-        val tvHas= holder.getView<AppCompatTextView>(R.id.tv_line32)
+        val tvHas= holder.getView<TextView>(R.id.tv_line32)
         when(item.isHas){
             0->{
                 tvHas.text =""
@@ -43,7 +42,7 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
                 tvHas.setTextColor(ContextCompat.getColor(context,R.color.txt_red))
             }
         }
-        val tvState = holder.getView<AppCompatTextView>(R.id.tv_line42)
+        val tvState = holder.getView<TextView>(R.id.tv_line42)
         when(item.state){
             0->{
                 tvState.text = ""
@@ -66,11 +65,11 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
         super.convert(holder, item, payloads)
         if (payloads.isEmpty()) return
         when(payloads[0]){
-            "0"->holder.getView<AppCompatTextView>(R.id.tv_line11).text = item.code
-            "1"->holder.getView<AppCompatTextView>(R.id.tv_line12).text = item.name
-            "2"->holder.getView<AppCompatTextView>(R.id.tv_line22).text =String.format("%.1f℃",item.temperature?.div(10)?:0f)
+            "0"->holder.getView<TextView>(R.id.tv_line11).text = item.code
+            "1"->holder.getView<TextView>(R.id.tv_line12).text = item.name
+            "2"->holder.getView<TextView>(R.id.tv_line22).text =String.format("%.1f℃",item.temperature?.div(10)?:0f)
             "3"->{
-                val tvHas = holder.getView<AppCompatTextView>(R.id.tv_line32)
+                val tvHas = holder.getView<TextView>(R.id.tv_line32)
                 when(item.isHas){
                     0->{
                         tvHas.text =""
@@ -87,7 +86,7 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
                 }
             }
             "4"->{
-                val tvState = holder.getView<AppCompatTextView>(R.id.tv_line42)
+                val tvState = holder.getView<TextView>(R.id.tv_line42)
                 when(item.state){
                     0->{
                         tvState.text = ""

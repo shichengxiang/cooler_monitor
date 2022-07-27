@@ -1,6 +1,7 @@
 package com.cooler.system.util
 
 import android.content.Context
+import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -65,6 +66,16 @@ object Util {
         }
         toastMsg = msg
         mToast?.show()
+    }
+
+    /**
+     * 获取ip
+     */
+    fun getLocalIp(context:Context):String?{
+        val wm = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val connectionInfo = wm.connectionInfo
+        val ad = connectionInfo.ipAddress
+        return "${ad and 0xff}.${ad shr 8 and 0xff}.${ad shr 16 and 0xff}.${ad shr 24 and 0xff}"
     }
 
     fun getUniqueID(context: Context): String? {
