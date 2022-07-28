@@ -43,14 +43,13 @@ class MainActivity : AppCompatActivity(), TcpListener {
             showActiveDialog()
         } else {
             initServer()
-            bind.tvIp.text= "IP : ${Util.getLocalIp(this)}"
-
         }
     }
 
     private fun initServer() {
         ModbusTools.getInstance().addListener(this).start(9999, 1)
         mAdapter?.setList(ConvertBean.mCacheInfo)
+        bind.tvIp.text= "IP : ${Util.getLocalIp(this)}"
 //        mAdapter?.data?.get(0)?.code= "JT0001"
 //        mAdapter?.notifyItemChanged(0,"0")
     }

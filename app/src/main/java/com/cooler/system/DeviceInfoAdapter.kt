@@ -49,12 +49,12 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
                 tvState.setBackgroundResource(R.drawable.rect_box_normal)
             }
             1->{
-                tvState.text = "正常"
+                tvState.text = "正 常"
                 tvState.setTextColor(ContextCompat.getColor(context,R.color.white))
                 tvState.setBackgroundResource(R.drawable.rect_box_green)
             }
             else->{
-                tvState.text = "异常"
+                tvState.text = "异 常"
                 tvState.setTextColor(ContextCompat.getColor(context,R.color.white))
                 tvState.setBackgroundResource(R.drawable.rect_box_red)
             }
@@ -93,12 +93,12 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
                         tvState.setBackgroundResource(R.drawable.rect_box_normal)
                     }
                     1->{
-                        tvState.text = "正常"
+                        tvState.text = "正 常"
                         tvState.setTextColor(ContextCompat.getColor(context,R.color.white))
                         tvState.setBackgroundResource(R.drawable.rect_box_green)
                     }
                     else->{
-                        tvState.text = "异常"
+                        tvState.text = "异 常"
                         tvState.setTextColor(ContextCompat.getColor(context,R.color.white))
                         tvState.setBackgroundResource(R.drawable.rect_box_red)
                     }

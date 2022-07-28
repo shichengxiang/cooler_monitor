@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="1">
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line11"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -21,14 +21,16 @@
             android:lines="1"
             android:textStyle="bold"
             android:gravity="center"
-            android:textSize="20dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="20dp"
             android:textColor="@color/txt_mark"/>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line12"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text=""
-            android:textSize="25dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp"
             android:layout_weight="2"
             android:lines="1"
             android:layout_marginRight="16dp"
@@ -42,18 +44,19 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="1">
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line21"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp"
             android:text="温 度"
             android:textStyle="bold"
-            android:textSize="25dp"
             android:lines="1"
             android:gravity="center"
             android:textColor="@color/txt_mark"/>
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line22"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -63,7 +66,8 @@
             android:layout_marginRight="16dp"
             android:layout_marginVertical="12dp"
             android:textColor="@color/txt_green"
-            android:textSize="25dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp"
             android:background="@drawable/rect_box_normal"
             android:gravity="center"/>
     </LinearLayout>
@@ -72,7 +76,7 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="1">
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line31"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -82,8 +86,9 @@
             android:lines="1"
             android:gravity="center"
             android:textColor="@color/txt_mark"
-            android:textSize="25dp"/>
-        <TextView
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp" />
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line32"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -91,7 +96,8 @@
             android:layout_weight="2"
             android:lines="1"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp"
             android:layout_marginRight="16dp"
             android:layout_marginVertical="12dp"
             android:background="@drawable/rect_box_normal"
@@ -102,7 +108,7 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="1">
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line41"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -112,8 +118,9 @@
             android:lines="1"
             android:gravity="center"
             android:textColor="@color/txt_mark"
-            android:textSize="25dp"/>
-        <TextView
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp"/>
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_line42"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -123,7 +130,8 @@
             android:layout_marginRight="16dp"
             android:layout_marginVertical="12dp"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            app:autoSizeTextType="uniform"
+            app:autoSizeMaxTextSize="25dp"
             android:background="@drawable/rect_box_normal"
             android:gravity="center"/>
     </LinearLayout>
