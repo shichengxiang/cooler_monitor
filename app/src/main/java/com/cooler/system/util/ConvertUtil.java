@@ -42,19 +42,20 @@ public class ConvertUtil {
         StringBuffer bf = new StringBuffer();
         for (int i : a) {
             String hex = Integer.toHexString(i);
-            if(hex.length()<1) break;
+            if(hex.length()<2) break;
             for (int j=0;j<hex.length();j+=2){
-                if(j+2>=hex.length()){
+                if(j+2<=hex.length()){
                     String s = hex.substring(j, j + 2);
-                    Util.log("hex==  "+s);
-                    int b =Integer.parseInt(s,16);
-                    if(b>=32 && b<=127) bf.append((char) b);
-                }else{
-                    String s = hex.substring(j, j + 1);
-                    Util.log("hex==  "+s);
+//                    Util.log("hex==  "+s);
                     int b =Integer.parseInt(s,16);
                     if(b>=32 && b<=127) bf.append((char) b);
                 }
+//                else{
+//                    String s = hex.substring(j, j + 1);
+//                    Util.log("hex==  "+s);
+//                    int b =Integer.parseInt(s,16);
+//                    if(b>=32 && b<=127) bf.append((char) b);
+//                }
             }
         }
         return bf.toString();
@@ -63,12 +64,15 @@ public class ConvertUtil {
         StringBuffer bf = new StringBuffer();
         for (int i : a) {
             String hex = Integer.toHexString(i);
-            if(hex.length()<1) break;
+            Util.log("tounicode hex = "+hex);
+            if(hex.equals("0")) break;
             bf.append("\\u");
             for (int j=hex.length();j>=1;j-=2){
                     if(j==1){
                         String s = hex.substring(0, j);
-                        bf.append("0").append(s);
+                        if(!s.equals("0")){
+                            bf.append("0").append(s);
+                        }
                     }else {
                         String s = hex.substring(j-2, j);
                         bf.append(s);
