@@ -5,11 +5,13 @@
     android:layout_height="wrap_content"
     android:background="@drawable/box1"
     android:orientation="vertical"
-    android:paddingVertical="10dp">
+    android:gravity="center"
+    android:paddingVertical="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -31,16 +33,19 @@
                 app:autoSizeMaxTextSize="20dp"
                 app:autoSizeTextType="uniform" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.cooler.system.custom.MarqueeTextView
                 android:id="@+id/tv_line12"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="5dp"
                 android:layout_marginRight="16dp"
                 android:layout_weight="2"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:ellipsize="marquee"
+                android:singleLine="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:lines="1"
                 android:text=""
                 android:textColor="@color/white"
                 app:autoSizeMaxTextSize="25dp"
@@ -60,7 +65,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lines="1"
-                android:text="温 度"
+                android:text="温 度 "
                 android:textColor="@color/txt_mark"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="25dp"
@@ -70,7 +75,7 @@
                 android:id="@+id/tv_line22"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="5dp"
                 android:layout_marginRight="16dp"
                 android:layout_weight="2"
                 android:background="@drawable/rect_box_normal"
@@ -95,7 +100,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lines="1"
-                android:text="有/无"
+                android:text="有/无 "
                 android:textColor="@color/txt_mark"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="25dp"
@@ -105,7 +110,7 @@
                 android:id="@+id/tv_line32"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="5dp"
                 android:layout_marginRight="16dp"
                 android:layout_weight="2"
                 android:background="@drawable/rect_box_normal"
@@ -120,7 +125,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
@@ -135,7 +141,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lines="1"
-                android:text="状 态"
+                android:text="状 态 "
                 android:textColor="@color/txt_mark"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="25dp"
@@ -145,7 +151,7 @@
                 android:id="@+id/tv_line42"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="5dp"
                 android:layout_marginRight="16dp"
                 android:layout_weight="2"
                 android:background="@drawable/rect_box_normal"
@@ -170,26 +176,27 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:lines="1"
-                android:text="备 注"
+                android:text="备 注 "
                 android:textColor="@color/txt_mark"
                 android:textStyle="bold"
                 app:autoSizeMaxTextSize="25dp"
                 app:autoSizeTextType="uniform" />
 
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.cooler.system.custom.MarqueeTextView
                 android:id="@+id/tv_line52"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="12dp"
+                android:layout_marginVertical="5dp"
                 android:layout_marginRight="16dp"
                 android:layout_weight="5"
                 android:background="@drawable/rect_box_normal"
+                android:ellipsize="marquee"
                 android:gravity="center"
-                android:lines="1"
-                android:text=""
+                android:text="我是备注我是备注我是备注我是备注我是备注我是备注我是备注我是备注我是备注我是备注我是备注我是备注daa"
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="25dp"
-                app:autoSizeTextType="uniform" />
+                app:autoSizeMaxTextSize="22dp"
+                app:autoSizeTextType="uniform"
+                android:singleLine="true" />
         </LinearLayout>
     </LinearLayout>
 

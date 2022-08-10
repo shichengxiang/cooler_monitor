@@ -21,6 +21,7 @@ public class App extends Application {
     private static ExecutorService service;
     private static Handler mainHandler;
     private static int sWidth=0;
+    private static int sHeight=0;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -28,9 +29,13 @@ public class App extends Application {
 
         MMKV.initialize(this);
         sWidth = Math.max(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
+        sHeight = Math.min(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
     }
     public static int getScreenWidth(){
         return sWidth;
+    }
+    public static int getScreenHeight(){
+        return sHeight;
     }
     public static ExecutorService getExecutor(){
         if(service == null){

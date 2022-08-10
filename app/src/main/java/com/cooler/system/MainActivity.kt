@@ -28,13 +28,14 @@ class MainActivity : AppCompatActivity(), TcpListener {
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
         ImmersionBar.with(this).fullScreen(true).init()
-        log("oncrate()")
-        mAdapter = DeviceInfoAdapter()
+        val statusHeight = ImmersionBar.getStatusBarHeight(this)+ImmersionBar.getNavigationBarHeight(this)
+        mAdapter = DeviceInfoAdapter(statusHeight)
+        log("status bar height = $statusHeight")
         bind.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
             addItemDecoration(
                 SpaceItemDecoration(
-                    applicationContext, RecyclerView.HORIZONTAL, toPx(10f)
+                    applicationContext, RecyclerView.VERTICAL, toPx(10f)
                 )
             )
             adapter = mAdapter

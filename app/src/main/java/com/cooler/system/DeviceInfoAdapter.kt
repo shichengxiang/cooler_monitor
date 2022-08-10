@@ -1,25 +1,20 @@
 package com.cooler.system
 
-import android.app.Activity
-import android.content.res.Resources
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooler.system.entities.DeviceBean
-import com.gyf.immersionbar.ImmersionBar
 
-class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.item_device_info){
+class DeviceInfoAdapter(var statusHeight:Int) :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.item_device_info){
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return super.onCreateDefViewHolder(parent, viewType)
     }
 
     override fun createBaseViewHolder(view: View): BaseViewHolder {
-        view.layoutParams.width = (App.getScreenWidth()- toPx(20f)*2) / 3
+        view.layoutParams.height = (App.getScreenHeight()- 110- toPx(44f)-statusHeight) / 3
         return super.createBaseViewHolder(view)
     }
     override fun convert(holder: BaseViewHolder, item: DeviceBean) {
@@ -28,6 +23,13 @@ class DeviceInfoAdapter :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.it
         val tvTemp = holder.getView<TextView>(R.id.tv_line22)
         tvTemp.text = String.format("%.1f℃",item.temperature?.div(10)?:0f)
         val tvHas= holder.getView<TextView>(R.id.tv_line32)
+        val tvBeizu = holder.getView<TextView>(R.id.tv_line52)
+        with(tvBeizu){
+            isFocusable=true
+            isSingleLine=true
+            marqueeRepeatLimit = -1
+            isFocusableInTouchMode=true
+        }
         when(item.isHas){
             0->{
                 tvHas.text =""

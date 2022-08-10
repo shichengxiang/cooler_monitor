@@ -6,7 +6,8 @@ import com.cooler.system.util.Util
 import java.lang.Exception
 
 fun log(msg: String, tag: String? = "") {
-    Log.i("cooler== $tag", msg)
+    if(BuildConfig.DEBUG)
+        Log.i("cooler== $tag", msg)
 }
 fun toast(msg:String){
     Util.toast(msg)

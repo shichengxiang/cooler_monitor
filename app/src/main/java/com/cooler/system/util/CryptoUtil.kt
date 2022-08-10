@@ -33,7 +33,7 @@ object CryptoUtil {
             39,
             41
         ) + ascii.substring(55, 57) + ascii.substring(ascii.length - 2)
-//        log("cypto res= $res")
+        log("cypto res= $res")
         return res
     }
 
