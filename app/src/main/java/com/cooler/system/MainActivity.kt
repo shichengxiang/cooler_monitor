@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), TcpListener {
 
     private lateinit var bind: ActivityMainBinding
     var mActiveDialog: Dialog? = null
-    var mAdapter: DeviceInfoAdapter? = null
+    var mAdapter: DeviceInfoAdapter2? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), TcpListener {
         setContentView(bind.root)
         ImmersionBar.with(this).fullScreen(true).init()
         val statusHeight = ImmersionBar.getStatusBarHeight(this)+ImmersionBar.getNavigationBarHeight(this)
-        mAdapter = DeviceInfoAdapter(statusHeight)
+        mAdapter = DeviceInfoAdapter2(statusHeight)
         log("status bar height = $statusHeight")
         bind.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)

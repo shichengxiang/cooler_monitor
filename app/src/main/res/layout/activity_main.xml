@@ -17,11 +17,13 @@
         android:textSize="15dp"
         android:textColor="@color/gray_7E828A"
         android:layout_marginStart="14dp"
-        android:layout_marginBottom="20px"/>
+        android:layout_marginBottom="20px"
+        android:visibility="gone"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="110px"
         android:layout_marginHorizontal="10dp"
         android:layout_marginBottom="14dp"/>
 
