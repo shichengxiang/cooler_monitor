@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), TcpListener {
         log("oncrate()")
         mAdapter = DeviceInfoAdapter()
         bind.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
             addItemDecoration(
                 SpaceItemDecoration(
                     applicationContext, RecyclerView.HORIZONTAL, toPx(10f)
