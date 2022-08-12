@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooler.system.entities.DeviceBean
 
-class DeviceInfoAdapter2(var statusHeight:Int) :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.item_device_info2){
+class DeviceInfoAdapter2(var statusHeight:Int) :BaseQuickAdapter<DeviceBean,BaseViewHolder>(R.layout.item_device_info3){
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return super.onCreateDefViewHolder(parent, viewType)
     }
