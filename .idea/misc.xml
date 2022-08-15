@@ -3,11 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/drawable/rect_active_bg.xml" value="0.232" />
         <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/drawable/rect_box_normal.xml" value="0.176" />
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/drawable/rect_focused_2.xml" value="0.232" />
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/drawable/rect_normal_2.xml" value="0.232" />
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/drawable/rect_solid_blue_2.xml" value="0.232" />
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/drawable/selector_btn.xml" value="0.232" />
         <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/activity_main.xml" value="0.29635416666666664" />
         <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/dialog_active.xml" value="0.3182291666666667" />
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/dialog_config.xml" value="0.3182291666666667" />
         <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/item_device_info.xml" value="0.30104166666666665" />
-        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/item_device_info2.xml" value="0.3182291666666667" />
+        <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/item_device_info2.xml" value="0.1" />
         <entry key="..\:/workspace_jc/CoolerSystem/app/src/main/res/layout/item_device_info3.xml" value="0.2" />
         <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/drawable/rect_active_bg.xml" value="0.2125" />
         <entry key="..\:/workspace_smar/cooler_monitor/app/src/main/res/drawable/rect_box_normal.xml" value="0.1635" />

@@ -52,4 +52,9 @@ dependencies {
     implementation 'com.tencent:mmkv:1.2.13'//存储
     implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2' //状态栏 沉浸式
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.google.code.gson:gson:$gson_version"
 }

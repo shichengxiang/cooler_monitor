@@ -12,16 +12,21 @@ import com.cooler.system.dialog.ActiveDialogUtil
 import com.cooler.system.modbus.ModbusTools
 import com.cooler.system.modbus.MyDataHolder
 import com.cooler.system.modbus.TcpListener
+import com.cooler.system.network.Client
 import com.cooler.system.util.*
 import com.gyf.immersionbar.ImmersionBar
 import com.tencent.mmkv.MMKV
+import com.vce.baselib.network.BaseRetrofit
 import java.math.BigInteger
 
+/**
+ * modbus协议方式请求
+ */
 class MainActivity : AppCompatActivity(), TcpListener {
 
     private lateinit var bind: ActivityMainBinding
     var mActiveDialog: Dialog? = null
-    var mAdapter: DeviceInfoAdapter2? = null
+    var mAdapter: DeviceInfoAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -29,7 +34,7 @@ class MainActivity : AppCompatActivity(), TcpListener {
         setContentView(bind.root)
         ImmersionBar.with(this).fullScreen(true).init()
         val statusHeight = ImmersionBar.getStatusBarHeight(this)+ImmersionBar.getNavigationBarHeight(this)
-        mAdapter = DeviceInfoAdapter2(statusHeight)
+        mAdapter = DeviceInfoAdapter(statusHeight)
         log("status bar height = $statusHeight")
         bind.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
@@ -51,8 +56,6 @@ class MainActivity : AppCompatActivity(), TcpListener {
         ModbusTools.getInstance().addListener(this).start(9999, 1)
         mAdapter?.setList(ConvertBean.mCacheInfo)
         bind.tvIp.text= "IP : ${Util.getLocalIp(this)}"
-//        mAdapter?.data?.get(0)?.code= "JT0001"
-//        mAdapter?.notifyItemChanged(0,"0")
     }
 
     override fun onDestroy() {

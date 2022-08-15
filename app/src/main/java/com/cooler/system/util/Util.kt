@@ -106,4 +106,27 @@ object Util {
         MMKV.defaultMMKV().encode("uuid", res)
         return res
     }
+
+    /**
+     * 保存host
+     */
+    fun saveHost(ip:String,port:String){
+        MMKV.defaultMMKV().encode("ip", ip)
+        MMKV.defaultMMKV().encode("port",port)
+    }
+
+    /**
+     * 保存间隔时间
+     */
+    fun savePerTime(time:Int){
+        MMKV.defaultMMKV().encode("pertime",time)
+    }
+    fun getHost():Pair<String?,String?>{
+        val first= MMKV.defaultMMKV().decodeString("ip")
+        val second = MMKV.defaultMMKV().decodeString("port")
+        return Pair(first,second)
+    }
+    fun getPerTime():Int{
+        return MMKV.defaultMMKV().decodeInt("pertime")
+    }
 }
