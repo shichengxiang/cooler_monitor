@@ -121,12 +121,25 @@ object Util {
     fun savePerTime(time:Int){
         MMKV.defaultMMKV().encode("pertime",time)
     }
+    fun saveDeviceCodes(vararg codes:String){
+        val buffer = StringBuffer()
+        codes.forEach {
+            buffer.append(it).append(",")
+        }
+        MMKV.defaultMMKV().encode("codes",buffer.toString())
+    }
     fun getHost():Pair<String?,String?>{
         val first= MMKV.defaultMMKV().decodeString("ip")
         val second = MMKV.defaultMMKV().decodeString("port")
         return Pair(first,second)
     }
     fun getPerTime():Int{
-        return MMKV.defaultMMKV().decodeInt("pertime")
+        return MMKV.defaultMMKV().decodeInt("pertime",3)
     }
+    fun getDeviceCodes():Array<String>?{
+        val s = MMKV.defaultMMKV().decodeString("codes", "")
+        val split = s?.split(",")?.toTypedArray()
+        return split
+    }
+
 }

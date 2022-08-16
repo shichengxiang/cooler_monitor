@@ -5,7 +5,7 @@ package com.cooler.system.network
  * 创建者: shichengxiang
  * 创建时间：2022/3/23
  */
-class BaseResponse<T> {
+open class BaseResponse<T> {
     var code: Int = 0
     var message: String? = null
     var data: T? = null

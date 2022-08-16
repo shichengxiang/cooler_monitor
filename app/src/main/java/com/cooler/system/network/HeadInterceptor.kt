@@ -1,5 +1,8 @@
 package com.cooler.system.network
 
+import android.text.TextUtils
+import com.cooler.system.util.Util
+import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
@@ -11,12 +14,16 @@ import okhttp3.Response
  */
 class HeadInterceptor :Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        var request=chain.request().newBuilder()
-//            .header()
-            .addHeader("token","")
+        val request = chain.request()
+            .newBuilder()
+//            .header("server", "nginx/1.15.11")
+            .header("Content-Type", "application/json; charset=utf-8")
+            .addHeader("Connection", "close")
+            .addHeader("Accept-Encoding", "chunked")
             .build()
+        Util.log("url = "+request.url +"  \n body = "+Gson().toJson(request.body))
         var response=chain.proceed(request)
-        var newToken=response.header("token")
+//        var newToken=response.header("token")
 
         return response
     }

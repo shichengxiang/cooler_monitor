@@ -2,6 +2,9 @@ package com.cooler.system.network;
 
 import androidx.lifecycle.LiveData;
 
+import com.cooler.system.util.Util;
+import com.google.gson.Gson;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Type;
@@ -54,6 +57,7 @@ public class LiveDataCallAdapter<T> implements CallAdapter<T, LiveData<T>> {
 //                        LogUtil.d("返回数据=" + JSON.toJSONString(body));
 
                         if (200 == response.code()) {
+                            Util.log(new Gson().toJson(response.body()));
 //                            LogUtil.d("网络请求成功");
 
 //                            ApiResponse t = JSON.parseObject(JSON.toJSONString(body), ApiResponse.class);

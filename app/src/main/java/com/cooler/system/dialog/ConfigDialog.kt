@@ -14,6 +14,7 @@ import com.cooler.system.R
 import com.cooler.system.toast
 import com.cooler.system.util.Util
 import com.tencent.mmkv.MMKV
+import org.w3c.dom.DOMError
 import java.lang.Exception
 import java.util.regex.Pattern
 
@@ -24,7 +25,7 @@ object ConfigDialog {
      * @param context Context
      * @return Dialog
      */
-    fun show(context: Context,click:(String)->Unit):Dialog {
+    fun show(context: Context,click:()->Unit):Dialog {
         val contentView = LayoutInflater.from(context).inflate(R.layout.dialog_config, null)
         var dialog = AlertDialog.Builder(context).apply {
             setView(contentView)
@@ -35,6 +36,9 @@ object ConfigDialog {
         val etPerTime = contentView.findViewById<EditText>(R.id.et_per_time)
         val btnSure = contentView.findViewById<View>(R.id.tv_sure)
         val btnCancle = contentView.findViewById<View>(R.id.tv_cancel)
+        val code1= contentView.findViewById<EditText>(R.id.et_device_code1)
+        val code2 = contentView.findViewById<EditText>(R.id.et_device_code2)
+        val code3 = contentView.findViewById<EditText>(R.id.et_device_code3)
         val host = Util.getHost()
         etIp.setText(host.first?:"0.0.0.0")
         etPort.setText(host.second?:"")
@@ -47,11 +51,18 @@ object ConfigDialog {
                 toast("端口号不能为空")
                 return@setOnClickListener
             }
+            if(code1.text.toString().isEmpty() && code2.text.toString().isEmpty() && code2.text.toString().isEmpty()){
+                toast("请至少填写一个设备号 ！")
+                return@setOnClickListener
+            }
             if(checkIp(ip) && checkTime(perTime)){
                 //保存数据
-
+                Util.saveHost(ip,port)
+                Util.savePerTime(perTime.toInt())
+                Util.saveDeviceCodes(code1.text.toString(),code2.text.toString(),code3.text.toString())
                 toast("设置成功！")
                 dialog.dismiss()
+                click.invoke()
             }
         }
         btnCancle.setOnClickListener {
@@ -88,6 +99,10 @@ object ConfigDialog {
             false
         }
     }
+
+    /**
+     * 检验时间不能小于1
+     */
     private fun checkTime(time:String):Boolean{
         try {
             if(time.toInt()<1){
