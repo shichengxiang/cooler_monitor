@@ -4,8 +4,10 @@ import com.cooler.system.network.HeadInterceptor
 import com.cooler.system.network.LiveDataCallAdapterFactory
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -33,6 +35,7 @@ class BaseRetrofit<T> {
         //拦截器
         var headInterceptor = HeadInterceptor()
         var okHttpClient = OkHttpClient.Builder()
+            .protocols(Collections.singletonList(Protocol.HTTP_1_1))
             .readTimeout(DEFAULT_TIME, TimeUnit.SECONDS)
             .connectTimeout(DEFAULT_TIME, TimeUnit.SECONDS)
             .callTimeout(DEFAULT_TIME, TimeUnit.SECONDS)

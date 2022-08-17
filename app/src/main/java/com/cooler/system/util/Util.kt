@@ -126,6 +126,7 @@ object Util {
         codes.forEach {
             buffer.append(it).append(",")
         }
+        if(buffer.length>1) buffer.deleteCharAt(buffer.length-1)
         MMKV.defaultMMKV().encode("codes",buffer.toString())
     }
     fun getHost():Pair<String?,String?>{

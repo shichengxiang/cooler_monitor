@@ -51,7 +51,7 @@ class Main2Activity : AppCompatActivity() {
             )
             adapter = mAdapter
         }
-        mAdapter?.setList(listOf(CoolerBean(), CoolerBean(), CoolerBean()))
+//        mAdapter?.setList(listOf(CoolerBean(), CoolerBean(), CoolerBean())) //初始数据默认3个
         if (!UserManager.isActived(this)) {
             showActiveDialog()
         } else {
@@ -99,32 +99,24 @@ class Main2Activity : AppCompatActivity() {
     private fun initServer() {
 //        mAdapter?.setList(ConvertBean.mCacheInfo)
         mDeviceCodes = Util.getDeviceCodes() ?: arrayOf()
+        mAdapter?.initDevideCode(mDeviceCodes)
         mPerTime = Util.getPerTime()
-//        val codes = StringBuffer()
-//        codes.append("[")
-//        mDeviceCodes.forEach {
-//            codes.append("'").append(it).append("'").append(",")
-//        }
         val params = Gson().toJson(mDeviceCodes)
         log("params == $params")
         Client.setHost("https://console-mock.apipost.cn/")
-        val p = arrayOf("JT1001","JT1002","JT1003")
-        log("p  = ${Gson().toJson(p)}")
         timer = Timer()
         timer?.schedule(timerTask {
             runOnUiThread {
-                log("go network  ${Gson().toJson(p)}")
-                Client.instance.requestInfo(Gson().toJson(p)).observe(this@Main2Activity) {
-                    log(Gson().toJson(it))
+                Client.instance.requestInfo(params).observe(this@Main2Activity) {
                     if (it?.isSuccess() == true) {
-                        val list = it?.data
-                        mAdapter?.setList(list)
+                        val list = it.data
+                        mAdapter?.refreshData(list)
                     } else {
                         toast(it?.message ?: "参数错误")
                     }
                 }
             }
-        }, 0L, 5 * 1000L)
+        }, 0L, mPerTime * 1000L)
     }
 
     override fun onDestroy() {
@@ -143,7 +135,7 @@ class Main2Activity : AppCompatActivity() {
                 if (b) {
                     UserManager.saveActiveCode(activeCode)
                     mActiveDialog?.dismiss()
-                    initServer()
+                    checkConfig()
                     toast("激活成功")
 //                    ModbusTools.getInstance().start(6000,100)
                 } else {

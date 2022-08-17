@@ -13,5 +13,6 @@ data class CoolerBean(
     var disableStateStr: String? = null, //状态
     var equipmentCode: String? = null, //编号
     var realityInTime: String? = null, //入藏时间
-    var temperature: String? = null //温度
+    var temperature: String? = null, //温度
+    var remark:String?=null  //备注
 )

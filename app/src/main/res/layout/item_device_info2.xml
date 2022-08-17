@@ -19,22 +19,25 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="柜 号:"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts20" />
+
             <com.cooler.system.custom.MarqueeTextView
+                android:id="@+id/tv_code"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
                 android:ellipsize="none"
-                android:maxLength="8"
+                android:maxLength="6"
                 android:singleLine="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="ade23d"
+                android:text=""
                 android:textColor="@color/white"
                 app:autoSizeMaxTextSize="20dp"
                 app:autoSizeTextType="uniform" />
@@ -51,17 +54,19 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
+
             <com.cooler.system.custom.MarqueeTextView
+                android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="5dp"
-                android:ellipsize="marquee"
-                android:focusableInTouchMode="true"
-                android:focusable="true"
-                android:singleLine="true"
                 android:background="@drawable/rect_box_normal"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:gravity="center"
-                android:text="王二麻子二麻子啊二麻子"
+                android:paddingHorizontal="5dp"
+                android:singleLine="true"
+                android:text=""
                 android:textColor="@color/white"
                 app:autoSizeMaxTextSize="20dp"
                 app:autoSizeTextType="uniform" />
@@ -78,14 +83,14 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
-            <com.cooler.system.custom.MarqueeTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_sex"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
-                android:maxLength="8"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="男"
+                android:text=""
                 android:textColor="@color/white"
                 app:autoSizeMaxTextSize="20dp"
                 app:autoSizeTextType="uniform" />
@@ -102,18 +107,18 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
-            <com.cooler.system.custom.MarqueeTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_age"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
                 android:ellipsize="none"
-                android:maxLength="3"
                 android:singleLine="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="ade23d"
+                android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="25dp"
+                app:autoSizeMaxTextSize="20dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -137,16 +142,19 @@
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
             <com.cooler.system.custom.MarqueeTextView
+                android:id="@+id/tv_store_time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
-                android:ellipsize="none"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:singleLine="true"
+                android:focusableInTouchMode="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="2021/2/5 10:15:30"
+                android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="25dp"
-                app:autoSizeTextType="uniform" />
+                android:textSize="@dimen/ts20"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
@@ -160,7 +168,8 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
-            <com.cooler.system.custom.MarqueeTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_temperature"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
@@ -170,9 +179,9 @@
                 android:singleLine="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="-99.9℃"
+                android:text="0.0℃"
                 android:textColor="@color/txt_green"
-                app:autoSizeMaxTextSize="25dp"
+                app:autoSizeMaxTextSize="20dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -187,16 +196,16 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
-            <com.cooler.system.custom.MarqueeTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_isHas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
-                android:maxLength="8"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="有"
+                android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="25dp"
+                app:autoSizeMaxTextSize="@dimen/ts20"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -211,21 +220,16 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
-            <com.cooler.system.custom.MarqueeTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_state"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:maxLength="4"
-                android:singleLine="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text="正常"
+                android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="25dp"
-                app:autoSizeTextType="uniform" />
+                android:textSize="20dp"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -247,17 +251,17 @@
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
             <com.cooler.system.custom.MarqueeTextView
+                android:id="@+id/tv_remark"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
                 android:ellipsize="marquee"
-                android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:singleLine="true"
+                android:textSize="@dimen/ts20"
                 android:gravity="center_vertical"
-                android:text="dfafdafdfdffafedfafeafdfaef"
+                android:text=""
+                android:singleLine="true"
                 android:textColor="@color/gray_CCCCCC"
-                app:autoSizeMaxTextSize="25dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
