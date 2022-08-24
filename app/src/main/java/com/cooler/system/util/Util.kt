@@ -124,7 +124,7 @@ object Util {
     fun saveDeviceCodes(vararg codes:String){
         val buffer = StringBuffer()
         codes.forEach {
-            buffer.append(it).append(",")
+            if(!it.isNullOrEmpty()) buffer.append(it).append(",")
         }
         if(buffer.length>1) buffer.deleteCharAt(buffer.length-1)
         MMKV.defaultMMKV().encode("codes",buffer.toString())

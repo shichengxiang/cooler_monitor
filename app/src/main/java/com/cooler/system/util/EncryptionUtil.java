@@ -1,8 +1,8 @@
 package com.cooler.system.util;
 
+import android.util.Base64;
 import android.util.Log;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.StringUtils;
 
 import java.io.UnsupportedEncodingException;
@@ -34,17 +34,17 @@ public class EncryptionUtil {
     public static String encrypToBase64Str(String content) {
 
         byte[] encryptResult = encrypt(content, mKey);
-        encryptResult = encrypt(Base64.encodeBase64String(parseByte2HexStr(encryptResult).getBytes()),  mKey);
-        String lastResult = Base64.encodeBase64String(parseByte2HexStr(encryptResult).getBytes());
+        encryptResult = encrypt(android.util.Base64.encodeToString(parseByte2HexStr(encryptResult).getBytes(), Base64.NO_WRAP),  mKey);
+        String lastResult = android.util.Base64.encodeToString(parseByte2HexStr(encryptResult).getBytes(), Base64.NO_WRAP);
         return lastResult;
     }
     public static String decryptFromBase64Str(String content){
-        byte[] b1 = Base64.decodeBase64(content);
+        byte[] b1 = android.util.Base64.decode(content, Base64.NO_WRAP);
         Log.e("test","length ="+b1);
         byte[] b2 = parseHexStr2Byte(StringUtils.newStringUtf8(b1));
         byte[] decrypt = decrypt(b2, mKey);
         Log.e("test","dec ="+decrypt.length);
-        byte[] b3 = Base64.decodeBase64(decrypt);
+        byte[] b3 = android.util.Base64.decode(decrypt, Base64.NO_WRAP);
         Log.e("test","b3 ="+b3.length);
         byte[] b4 = parseHexStr2Byte(StringUtils.newStringUtf8(b3));
         Log.e("test","b4 ="+b4.length);

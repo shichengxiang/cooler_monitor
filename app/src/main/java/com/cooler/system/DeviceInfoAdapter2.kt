@@ -33,8 +33,14 @@ class DeviceInfoAdapter2(var statusHeight: Int) : BaseQuickAdapter<CoolerBean, B
         tvName.text = item.deadName
         tvSex.text = item.deadGender
         tvAge.text = item.deadAge
-        tvStoreTime.text = item.realityInTime
-        tvTemperature.text = "${item.temperature?:""}℃"
+        if(tvStoreTime.text.toString()!= item.realityInTime){
+            tvStoreTime.text = item.realityInTime
+        }
+        if(item.temperature.isNullOrEmpty()){
+            tvTemperature.text=""
+        }else {
+            tvTemperature.text = "${item.temperature?:""}℃"
+        }
         tvIsHas.text = item.asHaveDead
         if (item.asHaveDead == "有") {
             tvIsHas.setTextColor(ContextCompat.getColor(context, R.color.txt_green))
@@ -51,7 +57,57 @@ class DeviceInfoAdapter2(var statusHeight: Int) : BaseQuickAdapter<CoolerBean, B
             tvState.setBackgroundResource(R.drawable.rect_box_normal)
         }
         tvState.text = item.disableStateStr
-        tvRemark.text = item.remark
+        if(tvRemark.text.toString()!=item.remark){
+            tvRemark.text = item.remark
+        }
+    }
+
+    override fun convert(holder: BaseViewHolder, item: CoolerBean, payloads: List<Any>) {
+        if(payloads.isNotEmpty()){
+            val tvName = holder.getView<TextView>(R.id.tv_name)
+            val tvSex = holder.getView<TextView>(R.id.tv_sex)
+            val tvAge = holder.getView<TextView>(R.id.tv_age)
+            val tvStoreTime = holder.getView<TextView>(R.id.tv_store_time)
+            val tvTemperature = holder.getView<TextView>(R.id.tv_temperature)
+            val tvIsHas = holder.getView<TextView>(R.id.tv_isHas)
+            val tvState = holder.getView<TextView>(R.id.tv_state)
+            val tvRemark = holder.getView<TextView>(R.id.tv_remark)
+            if(payloads[0] == "part"){
+                if(tvName.text.toString()!=item.deadName) tvName.text = item.deadName
+                if(tvSex.text.toString() !=item.deadGender) tvSex.text = item.deadGender
+                if(tvAge.text.toString()!=item.deadAge) tvAge.text = item.deadAge
+                if(tvStoreTime.text.toString()!= item.realityInTime){
+                    tvStoreTime.text = item.realityInTime
+                }
+                if(item.temperature.isNullOrEmpty()){
+                    tvTemperature.text=""
+                }else {
+                    tvTemperature.text = "${item.temperature?:""}℃"
+                }
+                if(tvIsHas.text.toString()!=item.asHaveDead){
+                    tvIsHas.text = item.asHaveDead
+                    if (item.asHaveDead == "有") {
+                        tvIsHas.setTextColor(ContextCompat.getColor(context, R.color.txt_green))
+                    } else {
+                        tvIsHas.setTextColor(ContextCompat.getColor(context, R.color.txt_red))
+                    }
+                    if (item.disableStateStr == "正常") {
+                        tvState.setTextColor(ContextCompat.getColor(context, R.color.white))
+                        tvState.setBackgroundResource(R.drawable.rect_box_green)
+                    } else if (item.disableStateStr == "异常") {
+                        tvState.setTextColor(ContextCompat.getColor(context, R.color.white))
+                        tvState.setBackgroundResource(R.drawable.rect_box_red)
+                    } else {
+                        tvState.setBackgroundResource(R.drawable.rect_box_normal)
+                    }
+                }
+                if(tvState.text.toString()!=item.disableStateStr) tvState.text = item.disableStateStr
+                if(tvRemark.text.toString()!=item.remark){
+                    tvRemark.text = item.remark
+                }
+            }
+        }
+
     }
 
     override fun setList(list: Collection<CoolerBean>?) {
@@ -86,7 +142,8 @@ class DeviceInfoAdapter2(var statusHeight: Int) : BaseQuickAdapter<CoolerBean, B
                     coolerBean.temperature  =c.temperature
                     coolerBean.realityInTime = c.realityInTime
                     coolerBean.remark = c.remark
-                    notifyItemChanged(index)
+//                    notifyItemChanged(index)
+                    notifyItemChanged(index,"part")
                     return@forEachIndexed
                 }
             }
