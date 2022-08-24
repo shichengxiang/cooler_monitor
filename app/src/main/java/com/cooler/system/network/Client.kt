@@ -13,15 +13,15 @@ import com.vce.baselib.network.BaseRetrofit
 class Client {
 
     companion object{
-
-        private var baseHost:String = ""
-        fun setHost(host: String){
-            baseHost = host
-        }
         @JvmStatic
         val instance: Client by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { Client() }
 //        @JvmStatic
 //        fun get()= lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { Client }
+    }
+    private var baseHost:String = ""
+    fun setNewHost(host:String){
+        baseHost = host
+        retrofit= BaseRetrofit(Api::class.java,baseHost)
     }
 
     private var retrofit: BaseRetrofit<Api>?=null

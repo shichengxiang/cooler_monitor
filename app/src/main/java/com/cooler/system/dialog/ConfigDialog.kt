@@ -43,21 +43,34 @@ object ConfigDialog {
         etIp.setText(host.first?:"0.0.0.0")
         etPort.setText(host.second?:"")
         etPerTime.setText(Util.getPerTime().toString())
+        val deviceCodes = Util.getDeviceCodes()
+        deviceCodes?.forEachIndexed { index, s ->
+            when (index) {
+                0 -> code1.setText(s)
+                1 -> code2.setText(s)
+                2 -> code3.setText(s)
+            }
+        }
         btnSure.setOnClickListener {
             val ip = etIp.text.toString()
             val port = etPort.text.toString()
             val perTime =  etPerTime.text.toString()
-            if(port.isEmpty()){
-                toast("端口号不能为空")
-                return@setOnClickListener
-            }
             if(code1.text.toString().isEmpty() && code2.text.toString().isEmpty() && code2.text.toString().isEmpty()){
                 toast("请至少填写一个设备号 ！")
                 return@setOnClickListener
             }
-            if(checkIp(ip) && checkTime(perTime)){
+            if(checkIp(ip)){ //输入的是ip形式
+                if(port.isEmpty()){
+                    toast("端口号不能为空")
+                    return@setOnClickListener
+                }else{
+                    Util.saveHost(ip,port)
+                }
+            }else{
+                Util.saveHost(ip,"")
+            }
+            if(checkTime(perTime)){
                 //保存数据
-                Util.saveHost(ip,port)
                 Util.savePerTime(perTime.toInt())
                 Util.saveDeviceCodes(code1.text.toString(),code2.text.toString(),code3.text.toString())
                 toast("设置成功！")
@@ -86,18 +99,12 @@ object ConfigDialog {
      */
     private fun  checkIp(ip:String?):Boolean{
         if(ip.isNullOrEmpty()){
-            toast("ip不能为空")
             return false
         }
         val str= "\\d+\\.\\d+\\.\\d+\\.\\d+"
         val compile = Pattern.compile(str)
         val matcher = compile.matcher(ip)
-        return if(matcher.matches()){
-            true
-        }else {
-            toast("请验证ip格式是否正确")
-            false
-        }
+        return matcher.matches()
     }
 
     /**

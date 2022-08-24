@@ -11,8 +11,9 @@ import com.cooler.system.data.UserManager
 import com.cooler.system.databinding.ActivityMainBinding
 import com.cooler.system.dialog.ActiveDialogUtil
 import com.cooler.system.dialog.ConfigDialog
-import com.cooler.system.entities.CoolerBean
 import com.cooler.system.network.Client
+import com.cooler.system.util.EncryptionUtil
+import com.cooler.system.util.EncryptionUtilTest
 import com.cooler.system.util.SpaceItemDecoration
 import com.cooler.system.util.Util
 import com.google.gson.Gson
@@ -29,7 +30,7 @@ class Main2Activity : AppCompatActivity() {
     var mActiveDialog: Dialog? = null
     var mAdapter: DeviceInfoAdapter2? = null
     private var mPerTime = 3
-    private var host = "https://console-mock.apipost.cn"
+    private var host = "https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/"
     private var mDeviceCodes = arrayOf("")
     var timer: Timer? = null
     var pwd = StringBuffer()
@@ -80,6 +81,10 @@ class Main2Activity : AppCompatActivity() {
             KeyEvent.KEYCODE_2 -> {
                 pwd.append(2)
             }
+            KeyEvent.KEYCODE_BACK ->{
+                ConfigDialog.show(this){initServer()}
+                return true
+            }
         }
         return super.onKeyDown(keyCode, event)
     }
@@ -89,7 +94,7 @@ class Main2Activity : AppCompatActivity() {
         val perTime = Util.getPerTime()
         val codes = Util.getDeviceCodes()
         mDeviceCodes = Util.getDeviceCodes() ?: arrayOf()
-        if (host.first.isNullOrEmpty() || host.second.isNullOrEmpty() || codes.isNullOrEmpty() || mDeviceCodes.size < 3) {
+        if (host.first.isNullOrEmpty() || codes.isNullOrEmpty() || mDeviceCodes.size < 3) {
             ConfigDialog.show(this) { initServer() }
         } else {
             initServer()
@@ -102,14 +107,15 @@ class Main2Activity : AppCompatActivity() {
         mAdapter?.initDevideCode(mDeviceCodes)
         mPerTime = Util.getPerTime()
         val params = Gson().toJson(mDeviceCodes)
-        log("params == $params")
-        Client.setHost("https://console-mock.apipost.cn/")
+        Client.instance.setNewHost(Util.getHostStr())
         timer = Timer()
         timer?.schedule(timerTask {
             runOnUiThread {
-                Client.instance.requestInfo(params).observe(this@Main2Activity) {
+                Client.instance.requestInfo(EncryptionUtil.encrypToBase64Str(params)).observe(this@Main2Activity) {
                     if (it?.isSuccess() == true) {
                         val list = it.data
+//                        val res= EncryptionUtil.decryptFromBase64Str(it.data)
+//                        log("res == $res")
                         mAdapter?.refreshData(list)
                     } else {
                         toast(it?.message ?: "参数错误")

@@ -46,6 +46,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation files('libs\\jlibmodbus-1.2.9.7.jar')
+    implementation files('libs\\commons-codec-1.15.jar')
     testImplementation 'junit:junit:4.13.2'
 //    implementation 'com.digitalpetri.modbus:modbus-slave-tcp:1.2.0'
 //    implementation 'com.intelligt.modbus:jlibmodbus:1.2.9.7'

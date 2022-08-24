@@ -134,6 +134,27 @@ object Util {
         val second = MMKV.defaultMMKV().decodeString("port")
         return Pair(first,second)
     }
+    fun getHostStr():String{
+        val first= MMKV.defaultMMKV().decodeString("ip")?:""
+        val second = MMKV.defaultMMKV().decodeString("port")
+        var url = if(first.startsWith("http://") || first.startsWith("https://")){
+            if(!second.isNullOrEmpty()){
+                "$first:$second"
+            }else{
+                first
+            }
+        }else{
+            if(!second.isNullOrEmpty()){
+                "http://$first:$second"
+            }else{
+                "http://$first"
+            }
+        }
+        if(!url.endsWith("\\/")){
+            url= "$url/"
+        }
+        return url
+    }
     fun getPerTime():Int{
         return MMKV.defaultMMKV().decodeInt("pertime",3)
     }

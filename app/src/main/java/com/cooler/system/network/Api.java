@@ -20,7 +20,7 @@ import retrofit2.http.Query;
  */
 interface Api {
     @FormUrlEncoded
-    @POST("app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/tv/load-cold-equipment")
+    @POST("tv/load-cold-equipment")
     LiveData<BaseResponse<List<CoolerBean>>> requestInfo(@Field("code") String code);
 
 }
