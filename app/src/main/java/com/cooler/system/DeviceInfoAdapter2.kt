@@ -133,7 +133,7 @@ class DeviceInfoAdapter2(var statusHeight: Int) : BaseQuickAdapter<CoolerBean, B
     fun refreshData(list: Collection<CoolerBean>?) {
         list?.forEach { c->
             data.forEachIndexed { index, coolerBean ->
-                if(coolerBean.equipmentCode == c.equipmentCode){
+                if(coolerBean.equipmentCode.equals(c.equipmentCode,true)){
                     coolerBean.asHaveDead = c.asHaveDead
                     coolerBean.deadName = c.deadName
                     coolerBean.deadAge= c.deadAge

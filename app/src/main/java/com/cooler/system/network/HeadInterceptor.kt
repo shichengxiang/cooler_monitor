@@ -6,6 +6,8 @@ import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import java.io.IOException
+import java.nio.charset.Charset
 
 /**
  * 描述：HeadInterceptor
@@ -21,8 +23,9 @@ class HeadInterceptor :Interceptor {
             .addHeader("Connection", "close")
             .addHeader("Accept-Encoding", "chunked")
             .build()
-        Util.log("url = "+request.url +"  \n body = "+Gson().toJson(request.body))
         var response=chain.proceed(request)
+        Util.log("url = "+request.url +"  \n body = "+Gson().toJson(request.body) +"result =="+response.code+"\n" +getResponseInfo(response))
+
 //        var newToken=response.header("token")
 
         return response
@@ -31,6 +34,23 @@ class HeadInterceptor :Interceptor {
         return ""
     }
     private fun getResponseInfo(response:Response):String{
-        return ""
+        var str = ""
+        if (response == null || !response.isSuccessful) {
+            return str!!
+        }
+        val responseBody = response.body
+        val contentLength = responseBody!!.contentLength()
+        val source = responseBody!!.source()
+        try {
+            source.request(Long.MAX_VALUE) // Buffer the entire body.
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        val buffer = source.buffer()
+        val charset = Charset.forName("utf-8")
+        if (contentLength != 0L) {
+            str = buffer.clone().readString(charset)
+        }
+        return str
     }
 }

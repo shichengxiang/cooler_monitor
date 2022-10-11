@@ -11,14 +11,23 @@ import com.cooler.system.data.UserManager
 import com.cooler.system.databinding.ActivityMainBinding
 import com.cooler.system.dialog.ActiveDialogUtil
 import com.cooler.system.dialog.ConfigDialog
+import com.cooler.system.entities.CoolerBean
 import com.cooler.system.network.Client
 import com.cooler.system.util.EncryptionUtil
 import com.cooler.system.util.EncryptionUtilTest
 import com.cooler.system.util.SpaceItemDecoration
 import com.cooler.system.util.Util
 import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.reflect.TypeToken
 import com.gyf.immersionbar.ImmersionBar
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.timerTask
 
 /**
@@ -108,15 +117,29 @@ class Main2Activity : AppCompatActivity() {
         mPerTime = Util.getPerTime()
         val params = Gson().toJson(mDeviceCodes)
         Client.instance.setNewHost(Util.getHostStr())
+//        Client.instance.setNewHost("https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/")
         timer = Timer()
         timer?.schedule(timerTask {
             runOnUiThread {
-                Client.instance.requestInfo(EncryptionUtil.encrypToBase64Str(params)).observe(this@Main2Activity) {
+                val map = hashMapOf<String,Any>().apply {
+                    put("codes",mDeviceCodes)
+                }
+//                log("cessss  ${Gson().toJson(map)}")
+//                log("cessss  "+EncryptionUtil.decryptFromBase64Str("MTJFRjNEMUQyRENERDIwOTkzNzRBOUMxOUNBRjE5NUU2MjU4RjBEOUQ2OUU3M0NFQkJGNTc4Mzc0NzcwM0NCNEM1QjAzQzdGMzA3NkJDOTQ3N0REODU3MUQzMUNEMEI3NDE4NkQ4QTY4QUY5RkRGNDJGMTI0QjcwNUM5NDhDOUFCRThBOUUzNzczNjdGOUYwQkZGMkFCNDM5MkYyOTZDQTI3QTBFNTk4OTJDMjI3M0Y1MUM5NzVGRTZDQjNDRTc1RERCQjY2Q0E4RkUyRjc3RjVERDY0MjU0MEFGMDQxOUIyQzQ4RDU2M0ExRDk2QTA0QzNCQjlGOUQzQzcyQjA4QjBFMjg0QzBFREM1Mjg2OTdFM0I4MTY4OTk0MkU0MkIw"))
+                val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
+                val obj = hashMapOf<String,String>().apply {
+                    put("content",encrypStr)
+                }
+                log("cessss  ${Gson().toJson(obj)}")
+                val body = Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+                Client.instance.requestInfo(body).observe(this@Main2Activity) {
                     if (it?.isSuccess() == true) {
-                        val list = it.data
+                        val listStr = it.data
 //                        val res= EncryptionUtil.decryptFromBase64Str(it.data)
 //                        log("res == $res")
-                        mAdapter?.refreshData(list)
+//                        val listType =object :TypeToken<ArrayList<CoolerBean>>(){}.type
+//                        val list = Gson().fromJson<List<CoolerBean>>(res,listType)
+                        mAdapter?.refreshData(listStr)
                     } else {
                         toast(it?.message ?: "参数错误")
                     }

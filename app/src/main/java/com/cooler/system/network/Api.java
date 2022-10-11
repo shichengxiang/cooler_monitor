@@ -7,6 +7,7 @@ import com.cooler.system.entities.GetCoolerResponse;
 
 import java.util.List;
 
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -19,8 +20,7 @@ import retrofit2.http.Query;
  * 创建时间：2022/3/23
  */
 interface Api {
-    @FormUrlEncoded
-    @POST("tv/load-cold-equipment")
-    LiveData<BaseResponse<List<CoolerBean>>> requestInfo(@Field("code") String code);
+    @POST("app-api/tv/load-cold-equipment")
+    LiveData<BaseResponse<List<CoolerBean>>> requestInfo(@Body RequestBody body);
 
 }

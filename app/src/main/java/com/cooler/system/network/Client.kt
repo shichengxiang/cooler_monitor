@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.cooler.system.entities.CoolerBean
 import com.cooler.system.entities.GetCoolerResponse
 import com.vce.baselib.network.BaseRetrofit
+import okhttp3.RequestBody
 
 /**
  * 描述：Client
@@ -32,5 +33,5 @@ class Client {
         return retrofit!!.getServer()
     }
     //请求信息
-    fun requestInfo(code:String): LiveData<BaseResponse<List<CoolerBean>>> = getServer().requestInfo(code)
+    fun requestInfo(body:RequestBody): LiveData<BaseResponse<List<CoolerBean>>> = getServer().requestInfo(body)
 }
