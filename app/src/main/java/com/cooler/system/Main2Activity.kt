@@ -38,7 +38,7 @@ class Main2Activity : AppCompatActivity() {
     private lateinit var bind: ActivityMainBinding
     var mActiveDialog: Dialog? = null
     var mAdapter: DeviceInfoAdapter2? = null
-    private var mPerTime = 3
+    private var mPerTime = 5
     private var host = "https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/"
     private var mDeviceCodes = arrayOf("")
     var timer: Timer? = null
@@ -118,6 +118,10 @@ class Main2Activity : AppCompatActivity() {
         val params = Gson().toJson(mDeviceCodes)
         Client.instance.setNewHost(Util.getHostStr())
 //        Client.instance.setNewHost("https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/")
+        if(timer!=null){
+            timer?.cancel()
+            timer=null
+        }
         timer = Timer()
         timer?.schedule(timerTask {
             runOnUiThread {
