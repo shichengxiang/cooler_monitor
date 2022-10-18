@@ -6,54 +6,57 @@
     android:background="@drawable/box1"
     android:orientation="vertical"
     android:gravity="center"
-    android:paddingHorizontal="5dp"
+    android:paddingHorizontal="6dp"
     android:paddingVertical="5dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingHorizontal="8dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="柜 号:"
+                android:text="柜&#12288;&#12288;号:"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20" />
+                android:textSize="@dimen/ts_title_size" />
 
             <com.cooler.system.custom.MarqueeTextView
                 android:id="@+id/tv_code"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingHorizontal="5dp"
+                android:layout_marginStart="6dp"
                 android:ellipsize="none"
                 android:maxLength="6"
                 android:singleLine="true"
-                android:background="@drawable/rect_box_normal"
-                android:gravity="center"
+                android:gravity="start|center_vertical"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="姓 名:"
+                android:text="&#12288;姓 名:"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
 
             <com.cooler.system.custom.MarqueeTextView
                 android:id="@+id/tv_name"
@@ -62,27 +65,29 @@
                 android:background="@drawable/rect_box_normal"
                 android:ellipsize="marquee"
                 android:focusable="true"
+                android:layout_marginStart="6dp"
                 android:focusableInTouchMode="true"
                 android:gravity="center"
                 android:paddingHorizontal="5dp"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="性 别:"
+                android:text="&#12288;性 别:"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_sex"
                 android:layout_width="match_parent"
@@ -90,9 +95,10 @@
                 android:paddingHorizontal="5dp"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
+                android:layout_marginStart="6dp"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -103,10 +109,10 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="年 龄:"
+                android:text="&#12288;年 龄:"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_age"
                 android:layout_width="match_parent"
@@ -114,11 +120,12 @@
                 android:paddingHorizontal="5dp"
                 android:ellipsize="none"
                 android:singleLine="true"
+                android:layout_marginStart="6dp"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -127,20 +134,22 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingHorizontal="8dp"
         android:layout_marginVertical="5dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="入藏时间:"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <com.cooler.system.custom.MarqueeTextView
                 android:id="@+id/tv_store_time"
                 android:layout_width="match_parent"
@@ -149,25 +158,27 @@
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:singleLine="true"
+                android:layout_marginStart="6dp"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_content_size"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="温 度:"
+                android:text="&#12288;温 度:"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_temperature"
                 android:layout_width="match_parent"
@@ -177,25 +188,27 @@
                 android:focusableInTouchMode="true"
                 android:focusable="true"
                 android:singleLine="true"
+                android:layout_marginStart="6dp"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
                 android:text="0.0℃"
                 android:textColor="@color/txt_green"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="有/无:"
+                android:text="&#12288;有/无:"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_isHas"
                 android:layout_width="match_parent"
@@ -204,22 +217,24 @@
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
                 android:text=""
+                android:layout_marginStart="6dp"
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="@dimen/ts20"
+                app:autoSizeMaxTextSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="状 态:"
+                android:text="&#12288;状 态:"
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_state"
                 android:layout_width="match_parent"
@@ -228,8 +243,9 @@
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
                 android:text=""
+                android:layout_marginStart="6dp"
                 android:textColor="@color/white"
-                android:textSize="20dp"/>
+                android:textSize="@dimen/ts_content_size"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -237,19 +253,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="备 注:"
+                android:text="备&#12288;&#12288;注:"
                 android:textColor="@color/txt_mark"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="@dimen/ts_title_size"/>
             <com.cooler.system.custom.MarqueeTextView
                 android:id="@+id/tv_remark"
                 android:layout_width="match_parent"
@@ -257,10 +274,12 @@
                 android:paddingHorizontal="5dp"
                 android:ellipsize="marquee"
                 android:focusableInTouchMode="true"
-                android:textSize="@dimen/ts20"
+                android:textSize="22dp"
+                android:layout_marginStart="6dp"
                 android:gravity="center_vertical"
                 android:text=""
                 android:singleLine="true"
+                android:background="@drawable/rect_box_normal"
                 android:textColor="@color/gray_CCCCCC"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>

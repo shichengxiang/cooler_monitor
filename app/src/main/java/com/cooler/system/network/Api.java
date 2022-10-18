@@ -22,5 +22,6 @@ import retrofit2.http.Query;
 interface Api {
     @POST("app-api/tv/load-cold-equipment")
     LiveData<BaseResponse<List<CoolerBean>>> requestInfo(@Body RequestBody body);
-
+//    @POST("tv/load-cold-equipment")
+//    LiveData<BaseResponse<List<CoolerBean>>> requestInfo(@Body RequestBody body);
 }
