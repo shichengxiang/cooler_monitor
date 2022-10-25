@@ -13,17 +13,18 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:layout_marginVertical="5dp"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="柜 号:"
+                android:text=" 柜&#12288;&#12288;号: "
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20" />
 
@@ -35,22 +36,22 @@
                 android:ellipsize="none"
                 android:maxLength="6"
                 android:singleLine="true"
-                android:background="@drawable/rect_box_normal"
                 android:gravity="center"
+                android:background="@drawable/rect_box_normal"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="姓 名:"
+                android:text=" 姓 名: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
@@ -68,18 +69,18 @@
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="性 别:"
+                android:text=" 性 别: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
@@ -92,18 +93,18 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="年 龄:"
+                android:text=" 年 龄: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
@@ -118,7 +119,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -132,13 +133,13 @@
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="入藏时间:"
+                android:text=" 入藏时间: "
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
             <com.cooler.system.custom.MarqueeTextView
@@ -154,17 +155,18 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="@dimen/ts20"/>
+                android:textSize="28dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="温 度:"
+                android:text=" 温 度: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
@@ -181,18 +183,19 @@
                 android:gravity="center"
                 android:text="0.0℃"
                 android:textColor="@color/txt_green"
-                app:autoSizeMaxTextSize="20dp"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="有/无:"
+                android:text=" 有/无: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
@@ -205,18 +208,19 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="@dimen/ts20"
+                app:autoSizeMaxTextSize="28dp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="状 态:"
+                android:text=" 状 态: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
@@ -229,7 +233,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                android:textSize="20dp"/>
+                android:textSize="28dp"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -238,16 +242,18 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:layout_marginVertical="5dp"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="备 注:"
+                android:text=" 备&#12288;&#12288;注: "
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts20"/>
             <com.cooler.system.custom.MarqueeTextView
@@ -257,7 +263,8 @@
                 android:paddingHorizontal="5dp"
                 android:ellipsize="marquee"
                 android:focusableInTouchMode="true"
-                android:textSize="@dimen/ts20"
+                android:textSize="26dp"
+                android:background="@drawable/rect_box_normal"
                 android:gravity="center_vertical"
                 android:text=""
                 android:singleLine="true"
