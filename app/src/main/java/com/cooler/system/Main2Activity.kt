@@ -145,7 +145,12 @@ class Main2Activity : AppCompatActivity() {
 //                        val list = Gson().fromJson<List<CoolerBean>>(res,listType)
                         mAdapter?.refreshData(listStr)
                     } else {
-                        toast(it?.message ?: "参数错误")
+                        if(it.code!=200){
+                            toast("${it?.code} 网络错误")
+                        }else{
+                            toast(it?.message ?: "参数错误")
+                        }
+                        log("resposne == ${it?.message}")
                     }
                 }
             }

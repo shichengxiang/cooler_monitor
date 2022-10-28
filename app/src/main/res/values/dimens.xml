@@ -2,4 +2,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="ts20">25dp</dimen>
     <dimen name="ts14">14dp</dimen>
+    <dimen name="ts_title_size">28dp</dimen>
+    <dimen name="ts_content_size">27dp</dimen>
 </resources>
