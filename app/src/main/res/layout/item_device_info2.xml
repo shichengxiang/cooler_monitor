@@ -40,7 +40,7 @@
                 android:background="@drawable/rect_box_normal"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="28dp"
+                android:textSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -63,13 +63,14 @@
                 android:background="@drawable/rect_box_normal"
                 android:ellipsize="marquee"
                 android:focusable="true"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:focusableInTouchMode="true"
                 android:gravity="center"
                 android:paddingHorizontal="5dp"
                 android:singleLine="true"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="@dimen/ts_content_size"
+                android:textSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -80,7 +81,7 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" 性 别: "
+                android:text=" 性  别: "
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts_title_size"/>
@@ -119,7 +120,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="@dimen/ts_content_size"
+                android:textSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -146,14 +147,14 @@
                 android:id="@+id/tv_store_time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="5dp"
+                android:paddingHorizontal="12dp"
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:singleLine="true"
+                android:marqueeRepeatLimit="marquee_forever"
                 android:focusableInTouchMode="true"
                 android:background="@drawable/rect_box_normal"
                 android:gravity="center"
-                android:text=""
                 android:textColor="@color/white"
                 android:textSize="@dimen/ts_content_size"/>
         </LinearLayout>
@@ -183,7 +184,7 @@
                 android:gravity="center"
                 android:text="0.0℃"
                 android:textColor="@color/txt_green"
-                app:autoSizeMaxTextSize="@dimen/ts_content_size"
+                android:textSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -208,7 +209,7 @@
                 android:gravity="center"
                 android:text=""
                 android:textColor="@color/white"
-                app:autoSizeMaxTextSize="@dimen/ts_content_size"
+                android:textSize="@dimen/ts_content_size"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
         <LinearLayout
@@ -268,7 +269,6 @@
                 android:gravity="center_vertical"
                 android:text=""
                 android:singleLine="true"
-                android:background="@drawable/rect_box_normal"
                 android:textColor="@color/gray_CCCCCC"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>

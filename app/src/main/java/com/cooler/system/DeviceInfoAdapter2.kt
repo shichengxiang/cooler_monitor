@@ -31,8 +31,10 @@ class DeviceInfoAdapter2(var statusHeight: Int) : BaseQuickAdapter<CoolerBean, B
         val tvRemark = holder.getView<TextView>(R.id.tv_remark)
         tvCode.text = item.equipmentCode
         tvName.text = item.deadName
+        tvName.isSelected=true
         tvSex.text = item.deadGender
         tvAge.text = item.deadAge
+        tvStoreTime.isSelected=true
         if(tvStoreTime.text.toString()!= item.realityInTime){
             tvStoreTime.text = item.realityInTime
         }
@@ -109,10 +111,10 @@ class DeviceInfoAdapter2(var statusHeight: Int) : BaseQuickAdapter<CoolerBean, B
         }
 
     }
-
-    override fun setList(list: Collection<CoolerBean>?) {
-        super.setList(list)
-    }
+//
+//    override fun setList(list: Collection<CoolerBean>?) {
+//        super.setList(list)
+//    }
 
     /**
      * 初始化数据 根据输入的设备编号陈列
