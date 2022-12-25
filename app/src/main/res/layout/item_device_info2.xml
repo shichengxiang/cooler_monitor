@@ -171,7 +171,7 @@
                 android:layout_marginStart="5dp"
                 android:textColor="@color/txt_mark"
                 android:textSize="@dimen/ts_title_size"/>
-            <androidx.appcompat.widget.AppCompatTextView
+            <com.cooler.system.custom.TempTextView
                 android:id="@+id/tv_temperature"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
