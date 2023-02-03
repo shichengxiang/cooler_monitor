@@ -2,6 +2,9 @@ package com.cooler.system
 
 import android.app.Dialog
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +46,13 @@ class Main2Activity : AppCompatActivity() {
     private var mDeviceCodes = arrayOf("")
     var timer: Timer? = null
     var pwd = StringBuffer()
+    private var mMessageHandler = object :Handler(Looper.getMainLooper()){
+        override fun handleMessage(msg: Message) {
+            if(msg.what == 1){
+                requestData()
+            }
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
@@ -115,46 +125,72 @@ class Main2Activity : AppCompatActivity() {
         mDeviceCodes = Util.getDeviceCodes() ?: arrayOf()
         mAdapter?.initDevideCode(mDeviceCodes)
         mPerTime = Util.getPerTime()
-        val params = Gson().toJson(mDeviceCodes)
+//        val params = Gson().toJson(mDeviceCodes)
         Client.instance.setNewHost(Util.getHostStr())
 //        Client.instance.setNewHost("https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/")
-        if(timer!=null){
-            timer?.cancel()
-            timer=null
+//        if(timer!=null){
+//            timer?.cancel()
+//            timer=null
+//        }
+//        timer = Timer()
+//        timer?.schedule(timerTask {
+//            runOnUiThread {
+//                val map = hashMapOf<String,Any>().apply {
+//                    put("codes",mDeviceCodes)
+//                }
+//                val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
+//                val obj = hashMapOf<String,String>().apply {
+//                    put("content",encrypStr)
+//                }
+//                log("cessss  ${Gson().toJson(obj)}")
+//                val body = Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+//                Client.instance.requestInfo(body).observe(this@Main2Activity) {
+//                    if (it?.isSuccess() == true) {
+//                        val listStr = it.data
+//                        mAdapter?.refreshData(listStr)
+//                    } else {
+//                        if(it.code!=200){
+//                            toast("${it?.code} 网络错误")
+//                        }else{
+//                            toast(it?.message ?: "参数错误")
+//                        }
+//                        log("resposne == ${it?.message}")
+//                    }
+//                }
+//            }
+//        }, 0L, mPerTime * 1000L)
+        mMessageHandler.removeMessages(1)
+        mMessageHandler.sendEmptyMessageDelayed(1,1000)
+    }
+
+    /**
+     * 请求数据
+     */
+    private fun requestData(){
+        val map = hashMapOf<String,Any>().apply {
+            put("codes",mDeviceCodes)
         }
-        timer = Timer()
-        timer?.schedule(timerTask {
-            runOnUiThread {
-                val map = hashMapOf<String,Any>().apply {
-                    put("codes",mDeviceCodes)
+        val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
+        val obj = hashMapOf<String,String>().apply {
+            put("content",encrypStr)
+        }
+        val body = Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+        Client.instance.requestInfo(body).observe(this@Main2Activity) {
+//            log("cessss  ${Gson().toJson(obj)}")
+            if (it?.isSuccess() == true) {
+                val listStr = it.data
+                mAdapter?.refreshData(listStr)
+            } else {
+                if(it.code!=200){
+                    toast("${it?.code} 网络错误")
+                }else{
+                    toast(it?.message ?: "参数错误")
                 }
-//                log("cessss  ${Gson().toJson(map)}")
-//                log("cessss  "+EncryptionUtil.decryptFromBase64Str("MTJFRjNEMUQyRENERDIwOTkzNzRBOUMxOUNBRjE5NUU2MjU4RjBEOUQ2OUU3M0NFQkJGNTc4Mzc0NzcwM0NCNEM1QjAzQzdGMzA3NkJDOTQ3N0REODU3MUQzMUNEMEI3NDE4NkQ4QTY4QUY5RkRGNDJGMTI0QjcwNUM5NDhDOUFCRThBOUUzNzczNjdGOUYwQkZGMkFCNDM5MkYyOTZDQTI3QTBFNTk4OTJDMjI3M0Y1MUM5NzVGRTZDQjNDRTc1RERCQjY2Q0E4RkUyRjc3RjVERDY0MjU0MEFGMDQxOUIyQzQ4RDU2M0ExRDk2QTA0QzNCQjlGOUQzQzcyQjA4QjBFMjg0QzBFREM1Mjg2OTdFM0I4MTY4OTk0MkU0MkIw"))
-                val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
-                val obj = hashMapOf<String,String>().apply {
-                    put("content",encrypStr)
-                }
-                log("cessss  ${Gson().toJson(obj)}")
-                val body = Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
-                Client.instance.requestInfo(body).observe(this@Main2Activity) {
-                    if (it?.isSuccess() == true) {
-                        val listStr = it.data
-//                        val res= EncryptionUtil.decryptFromBase64Str(it.data)
-//                        log("res == $res")
-//                        val listType =object :TypeToken<ArrayList<CoolerBean>>(){}.type
-//                        val list = Gson().fromJson<List<CoolerBean>>(res,listType)
-                        mAdapter?.refreshData(listStr)
-                    } else {
-                        if(it.code!=200){
-                            toast("${it?.code} 网络错误")
-                        }else{
-                            toast(it?.message ?: "参数错误")
-                        }
-                        log("resposne == ${it?.message}")
-                    }
-                }
+                log("resposne == ${it?.message}")
             }
-        }, 0L, mPerTime * 1000L)
+            mMessageHandler.removeMessages(1)
+            mMessageHandler.sendEmptyMessageDelayed(1,mPerTime*1000L)
+        }
     }
 
     override fun onDestroy() {
