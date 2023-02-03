@@ -11,4 +11,8 @@ class MarqueeTextView :AppCompatTextView {
     override fun isFocused(): Boolean {
         return true
     }
+
+    override fun onWindowFocusChanged(hasWindowFocus: Boolean) {
+        super.onWindowFocusChanged(true)
+    }
 }

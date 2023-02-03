@@ -129,6 +129,20 @@ object Util {
         if(buffer.length>1) buffer.deleteCharAt(buffer.length-1)
         MMKV.defaultMMKV().encode("codes",buffer.toString())
     }
+    //预警阀值
+    fun saveWarningTemp(temp:String){
+        try {
+            val t = temp.toFloat()
+            MMKV.defaultMMKV().encode("warning",t)
+        }catch (e:Exception){}
+    }
+    fun getWarningTemp():Float?{
+        return if(MMKV.defaultMMKV().containsKey("warning")){
+            MMKV.defaultMMKV().decodeFloat("warning",0f)
+        }else{
+            null
+        }
+    }
     fun getHost():Pair<String?,String?>{
         val first= MMKV.defaultMMKV().decodeString("ip")
         val second = MMKV.defaultMMKV().decodeString("port")

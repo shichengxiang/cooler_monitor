@@ -39,10 +39,12 @@ object ConfigDialog {
         val code1= contentView.findViewById<EditText>(R.id.et_device_code1)
         val code2 = contentView.findViewById<EditText>(R.id.et_device_code2)
         val code3 = contentView.findViewById<EditText>(R.id.et_device_code3)
+        val warningTemp = contentView.findViewById<EditText>(R.id.et_warning_temp)
         val host = Util.getHost()
         etIp.setText(host.first?:"0.0.0.0")
         etPort.setText(host.second?:"")
         etPerTime.setText(Util.getPerTime().toString())
+        warningTemp.setText("${Util.getWarningTemp()?:""}")
         val deviceCodes = Util.getDeviceCodes()
         deviceCodes?.forEachIndexed { index, s ->
             when (index) {
@@ -55,6 +57,7 @@ object ConfigDialog {
             val ip = etIp.text.toString()
             val port = etPort.text.toString()
             val perTime =  etPerTime.text.toString()
+            val warningTemp = warningTemp.text.toString()
             if(code1.text.toString().isEmpty() && code2.text.toString().isEmpty() && code2.text.toString().isEmpty()){
                 toast("请至少填写一个设备号 ！")
                 return@setOnClickListener
@@ -69,6 +72,7 @@ object ConfigDialog {
             }else{
                 Util.saveHost(ip,"")
             }
+            Util.saveWarningTemp(warningTemp)
             if(checkTime(perTime)){
                 //保存数据
                 Util.savePerTime(perTime.toInt())
