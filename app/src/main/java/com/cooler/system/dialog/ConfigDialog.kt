@@ -7,15 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.cooler.system.R
 import com.cooler.system.toast
 import com.cooler.system.util.Util
-import com.tencent.mmkv.MMKV
-import org.w3c.dom.DOMError
-import java.lang.Exception
 import java.util.regex.Pattern
 
 object ConfigDialog {
@@ -58,6 +54,15 @@ object ConfigDialog {
             val port = etPort.text.toString()
             val perTime =  etPerTime.text.toString()
             val warningTemp = warningTemp.text.toString()
+            var floatTemp :Float?=null
+            try{
+                floatTemp = warningTemp.toFloat()
+            }catch (e:Exception){
+            }
+            if(floatTemp == null){
+                toast("预警阀值请输入数字")
+                return@setOnClickListener
+            }
             if(code1.text.toString().isEmpty() && code2.text.toString().isEmpty() && code2.text.toString().isEmpty()){
                 toast("请至少填写一个设备号 ！")
                 return@setOnClickListener

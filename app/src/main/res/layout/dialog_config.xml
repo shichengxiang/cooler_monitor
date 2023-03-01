@@ -159,7 +159,6 @@
             android:layout_height="wrap_content"
             android:hint=""
             android:lines="1"
-            android:inputType="numberSigned|numberDecimal"
             android:maxLength="8"
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp"
