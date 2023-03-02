@@ -9,7 +9,6 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooler.system.custom.TempTextView
 import com.cooler.system.entities.CoolerBean
 import com.cooler.system.util.Util
-import java.security.spec.ECField
 
 class DeviceInfoAdapter2(var statusHeight: Int) :
     BaseQuickAdapter<CoolerBean, BaseViewHolder>(R.layout.item_device_info2) {
@@ -161,6 +160,24 @@ class DeviceInfoAdapter2(var statusHeight: Int) :
                 }
             }
         }
+    }
+    /**
+     * 刷新数据
+     */
+    fun refreshData() {
+            data.forEachIndexed { index, coolerBean ->
+                    coolerBean.asHaveDead = "1"
+                    coolerBean.deadName = "张三"
+                    coolerBean.deadAge = "20"
+                    coolerBean.disableStateStr ="有"
+                    coolerBean.deadGender = "d"
+                    coolerBean.temperature = "20"
+                    coolerBean.realityInTime = "dddd"
+                    coolerBean.remark = "dddddddddd"
+//                    notifyItemChanged(index)
+                    notifyItemChanged(index, "part")
+                    return@forEachIndexed
+            }
     }
 
     fun compareTemp(des: String?): Boolean {

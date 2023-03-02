@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.gyf.immersionbar.ImmersionBar;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.ExecutorService;
@@ -26,7 +27,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = this;
-
+        CrashReport.initCrashReport(getApplicationContext());
         MMKV.initialize(this);
         sWidth = Math.max(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
         sHeight = Math.min(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);

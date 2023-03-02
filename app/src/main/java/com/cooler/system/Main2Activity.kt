@@ -24,6 +24,7 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.gyf.immersionbar.ImmersionBar
+import com.tencent.bugly.crashreport.CrashReport
 import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
@@ -167,6 +168,11 @@ class Main2Activity : AppCompatActivity() {
      * 请求数据
      */
     private fun requestData(){
+//        mAdapter?.refreshData()
+//        mMessageHandler.removeMessages(1)
+//        mMessageHandler.sendEmptyMessageDelayed(1,mPerTime*1000L)
+//        CrashReport.testJavaCrash();
+
         val map = hashMapOf<String,Any>().apply {
             put("codes",mDeviceCodes)
         }
