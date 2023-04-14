@@ -43,24 +43,35 @@ class Main2Activity : AppCompatActivity() {
     var mActiveDialog: Dialog? = null
     var mAdapter: DeviceInfoAdapter2? = null
     private var mPerTime = 5
-    private var host = "https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/"
+    private var host =
+        "https://console-mock.apipost.cn/app/mock/project/7c32e56c-6972-4c15-c276-c6339f27bc7f/"
     private var mDeviceCodes = arrayOf("")
     var timer: Timer? = null
     var pwd = StringBuffer()
-    private var mMessageHandler = object :Handler(Looper.getMainLooper()){
-        override fun handleMessage(msg: Message) {
-            if(msg.what == 1){
-                requestData()
-            }
-        }
-    }
+    private var mMessageHandler: Handler? = null
+//    private var mMessageHandler = object : Handler(Looper.getMainLooper()) {
+//        override fun handleMessage(msg: Message) {
+//            if (msg.what == 1) {
+//                requestData()
+//            }
+//        }
+//    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
         ImmersionBar.with(this).fullScreen(true).init()
-        val statusHeight = ImmersionBar.getStatusBarHeight(this) + ImmersionBar.getNavigationBarHeight(this)
+        mMessageHandler = object : Handler(Looper.getMainLooper()) {
+            override fun handleMessage(msg: Message) {
+                if (msg.what == 1) {
+                    requestData()
+                }
+            }
+        }
+        val statusHeight =
+            ImmersionBar.getStatusBarHeight(this) + ImmersionBar.getNavigationBarHeight(this)
         mAdapter = DeviceInfoAdapter2(statusHeight)
         log("status bar height = $statusHeight")
         bind.recyclerView.apply {
@@ -101,8 +112,8 @@ class Main2Activity : AppCompatActivity() {
             KeyEvent.KEYCODE_2 -> {
                 pwd.append(2)
             }
-            KeyEvent.KEYCODE_BACK ->{
-                ConfigDialog.show(this){initServer()}
+            KeyEvent.KEYCODE_BACK -> {
+                ConfigDialog.show(this) { initServer() }
                 return true
             }
         }
@@ -160,42 +171,43 @@ class Main2Activity : AppCompatActivity() {
 //                }
 //            }
 //        }, 0L, mPerTime * 1000L)
-        mMessageHandler.removeMessages(1)
-        mMessageHandler.sendEmptyMessageDelayed(1,1000)
+        mMessageHandler?.removeMessages(1)
+        mMessageHandler?.sendEmptyMessageDelayed(1, 1000)
     }
 
     /**
      * 请求数据
      */
-    private fun requestData(){
+    private fun requestData() {
 //        mAdapter?.refreshData()
 //        mMessageHandler.removeMessages(1)
 //        mMessageHandler.sendEmptyMessageDelayed(1,mPerTime*1000L)
 //        CrashReport.testJavaCrash();
 
-        val map = hashMapOf<String,Any>().apply {
-            put("codes",mDeviceCodes)
+        val map = hashMapOf<String, Any>().apply {
+            put("codes", mDeviceCodes)
         }
         val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
-        val obj = hashMapOf<String,String>().apply {
-            put("content",encrypStr)
+        val obj = hashMapOf<String, String>().apply {
+            put("content", encrypStr)
         }
-        val body = Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
+        val body =
+            Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
         Client.instance.requestInfo(body).observe(this@Main2Activity) {
 //            log("cessss  ${Gson().toJson(obj)}")
             if (it?.isSuccess() == true) {
                 val listStr = it.data
                 mAdapter?.refreshData(listStr)
             } else {
-                if(it.code!=200){
+                if (it.code != 200) {
                     toast("${it?.code} 网络错误")
-                }else{
+                } else {
                     toast(it?.message ?: "参数错误")
                 }
                 log("resposne == ${it?.message}")
             }
-            mMessageHandler.removeMessages(1)
-            mMessageHandler.sendEmptyMessageDelayed(1,mPerTime*1000L)
+            mMessageHandler?.removeMessages(1)
+            mMessageHandler?.sendEmptyMessageDelayed(1, mPerTime * 1000L)
         }
     }
 

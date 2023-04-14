@@ -32,28 +32,28 @@ object ConfigDialog {
         val etPerTime = contentView.findViewById<EditText>(R.id.et_per_time)
         val btnSure = contentView.findViewById<View>(R.id.tv_sure)
         val btnCancle = contentView.findViewById<View>(R.id.tv_cancel)
-        val code1= contentView.findViewById<EditText>(R.id.et_device_code1)
-        val code2 = contentView.findViewById<EditText>(R.id.et_device_code2)
-        val code3 = contentView.findViewById<EditText>(R.id.et_device_code3)
-        val warningTemp = contentView.findViewById<EditText>(R.id.et_warning_temp)
+        val etCode1= contentView.findViewById<EditText>(R.id.et_device_code1)
+        val etCode2 = contentView.findViewById<EditText>(R.id.et_device_code2)
+        val etCode3 = contentView.findViewById<EditText>(R.id.et_device_code3)
+        val etWarningTemp = contentView.findViewById<EditText>(R.id.et_warning_temp)
         val host = Util.getHost()
         etIp.setText(host.first?:"0.0.0.0")
         etPort.setText(host.second?:"")
         etPerTime.setText(Util.getPerTime().toString())
-        warningTemp.setText("${Util.getWarningTemp()?:""}")
+        etWarningTemp.setText("${Util.getWarningTemp()?:""}")
         val deviceCodes = Util.getDeviceCodes()
         deviceCodes?.forEachIndexed { index, s ->
             when (index) {
-                0 -> code1.setText(s)
-                1 -> code2.setText(s)
-                2 -> code3.setText(s)
+                0 -> etCode1.setText(s)
+                1 -> etCode2.setText(s)
+                2 -> etCode3.setText(s)
             }
         }
         btnSure.setOnClickListener {
             val ip = etIp.text.toString()
             val port = etPort.text.toString()
             val perTime =  etPerTime.text.toString()
-            val warningTemp = warningTemp.text.toString()
+            val warningTemp = etWarningTemp.text.toString()
             var floatTemp :Float?=null
             try{
                 floatTemp = warningTemp.toFloat()
@@ -63,7 +63,7 @@ object ConfigDialog {
                 toast("预警阀值请输入数字")
                 return@setOnClickListener
             }
-            if(code1.text.toString().isEmpty() && code2.text.toString().isEmpty() && code2.text.toString().isEmpty()){
+            if(etCode1.text.toString().isEmpty() && etCode2.text.toString().isEmpty() && etCode2.text.toString().isEmpty()){
                 toast("请至少填写一个设备号 ！")
                 return@setOnClickListener
             }
@@ -77,11 +77,11 @@ object ConfigDialog {
             }else{
                 Util.saveHost(ip,"")
             }
-            Util.saveWarningTemp(warningTemp)
             if(checkTime(perTime)){
                 //保存数据
+                Util.saveWarningTemp(warningTemp)
                 Util.savePerTime(perTime.toInt())
-                Util.saveDeviceCodes(code1.text.toString(),code2.text.toString(),code3.text.toString())
+                Util.saveDeviceCodes(etCode1.text.toString(),etCode2.text.toString(),etCode3.text.toString())
                 toast("设置成功！")
                 dialog.dismiss()
                 click.invoke()

@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatTextView
+import com.cooler.system.App
 import com.cooler.system.log
 import java.util.*
 
@@ -30,8 +31,10 @@ class TempTextView :AppCompatTextView {
             if(mTask == null){
                 mTask = object :TimerTask() {
                     override fun run() {
-                        setTextColor(mColors[count % 2])
-                        count++
+                        App.post {
+                            setTextColor(mColors[count % 2])
+                            count++
+                        }
                     }
                 }
             }
