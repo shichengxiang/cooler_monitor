@@ -38,7 +38,7 @@ object ConfigDialog {
         val etWarningTemp = contentView.findViewById<EditText>(R.id.et_warning_temp)
         val host = Util.getHost()
         etIp.setText(host.first?:"0.0.0.0")
-        etPort.setText(host.second?:"")
+        etPort.setText("${host.second?:""}")
         etPerTime.setText(Util.getPerTime().toString())
         etWarningTemp.setText("${Util.getWarningTemp()?:""}")
         val deviceCodes = Util.getDeviceCodes()
@@ -67,16 +67,16 @@ object ConfigDialog {
                 toast("请至少填写一个设备号 ！")
                 return@setOnClickListener
             }
-            if(checkIp(ip)){ //输入的是ip形式
-                if(port.isEmpty()){
-                    toast("端口号不能为空")
-                    return@setOnClickListener
-                }else{
+//            if(checkIp(ip)){ //输入的是ip形式
+//                if(port.isEmpty()){
+//                    toast("端口号不能为空")
+//                    return@setOnClickListener
+//                }else{
                     Util.saveHost(ip,port)
-                }
-            }else{
-                Util.saveHost(ip,"")
-            }
+//                }
+//            }else{
+//                Util.saveHost(ip,port)
+//            }
             if(checkTime(perTime)){
                 //保存数据
                 Util.saveWarningTemp(warningTemp)

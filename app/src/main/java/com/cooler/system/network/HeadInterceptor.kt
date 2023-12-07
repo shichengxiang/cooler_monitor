@@ -23,6 +23,7 @@ class HeadInterceptor :Interceptor {
             .addHeader("Connection", "close")
             .addHeader("Accept-Encoding", "chunked")
             .build()
+        Util.log("request = ${request.url}")
         var response=chain.proceed(request)
         Util.log("url = "+request.url +"  \n body = "+Gson().toJson(request.body) +"result =="+response.code+"\n" +getResponseInfo(response))
 
