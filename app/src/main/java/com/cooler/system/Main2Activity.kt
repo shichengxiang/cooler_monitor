@@ -16,10 +16,7 @@ import com.cooler.system.dialog.ActiveDialogUtil
 import com.cooler.system.dialog.ConfigDialog
 import com.cooler.system.entities.CoolerBean
 import com.cooler.system.network.Client
-import com.cooler.system.util.EncryptionUtil
-import com.cooler.system.util.EncryptionUtilTest
-import com.cooler.system.util.SpaceItemDecoration
-import com.cooler.system.util.Util
+import com.cooler.system.util.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
@@ -61,6 +58,11 @@ class Main2Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         bind = ActivityMainBinding.inflate(layoutInflater)
+//        CryptoUtil.generateActive("ODFJMZC2OG")
+//        App.postDelay({
+//            var i = 0
+//            val j = 12 / i
+//        }, 1000)
         setContentView(bind.root)
         ImmersionBar.with(this).fullScreen(true).init()
         mMessageHandler = object : Handler(Looper.getMainLooper()) {

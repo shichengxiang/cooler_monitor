@@ -6,12 +6,15 @@ import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.cooler.system.util.Util;
 import com.gyf.immersionbar.ImmersionBar;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.mmkv.MMKV;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import xcrash.XCrash;
 
 public class App extends Application {
 
@@ -32,6 +35,17 @@ public class App extends Application {
         sWidth = Math.max(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
         sHeight = Math.min(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        XCrash.InitParameters parameters = new XCrash.InitParameters();
+        parameters.setLogDir(base.getFilesDir()+"/cooler");
+        String path = base.getFilesDir()+"/cooler";
+        int result = XCrash.init(this, parameters);
+        Util.log("log == "+path + " code = "+result);
+    }
+
     public static int getScreenWidth(){
         return sWidth;
     }
