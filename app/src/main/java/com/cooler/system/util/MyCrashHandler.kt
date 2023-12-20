@@ -1,7 +1,10 @@
 package com.cooler.system.util
 
 import android.content.Context
+import android.content.Intent
 import android.os.Environment
+import android.os.storage.StorageManager
+import com.cooler.system.ErrorActivity
 import com.cooler.system.log
 import java.io.File
 import java.io.FileWriter
@@ -23,9 +26,11 @@ class MyCrashHandler :Thread.UncaughtExceptionHandler {
             return instance!!
         }
     }
+    private var CTX:Context?=null
     private var mDefaultHandler:Thread.UncaughtExceptionHandler?=null
     private var error =""
     fun init(context: Context){
+        CTX=context
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler(this)
     }
@@ -39,23 +44,6 @@ class MyCrashHandler :Thread.UncaughtExceptionHandler {
         }else{
             mDefaultHandler?.uncaughtException(t,e)
         }
-        var  logPath = ""
-        if(Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED){
-            //外部存储可用
-            logPath = Environment.getExternalStorageDirectory().absolutePath+File.separator+"cooler_log"
-            val file = File(logPath)
-            if(!file.exists()){
-                file.mkdirs()
-            }
-            try {
-                val writer = FileWriter(logPath+File.separator+"error.log",false)
-                writer.write(error)
-                writer.close()
-            }catch (e:Exception){
-                e.printStackTrace()
-            }
-        }
-
 
     }
     private fun handleException(e:Throwable?):Boolean{
@@ -65,7 +53,84 @@ class MyCrashHandler :Thread.UncaughtExceptionHandler {
         e.printStackTrace(printWriter)
         printWriter.close()
         error = writer.toString()
+
+        var  logPath = ""
+        var srcFileName:String="cooler.txt"
+        if(Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED){
+            //外部存储可用
+            logPath = Environment.getExternalStorageDirectory().absolutePath+File.separator+"cooler_log"
+            val file = File(logPath)
+            if(!file.exists()){
+                file.mkdirs()
+            }
+            val srcFile = File(logPath+File.separator+srcFileName)
+            if(!srcFile.exists()){
+                srcFile.mkdir()
+            }
+            try {
+//                val fw :FileWriter? = FileWriter(logPath+File.separator+srcFileName,false)
+//                fw?.write(error)
+//                fw?.close()
+                val intent = Intent(CTX,ErrorActivity::class.java)
+                intent.putExtra("error",error)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                CTX?.startActivity(intent)
+                System.exit(0)
+
+            }catch (e:Exception){
+                e.printStackTrace()
+            }finally {
+//                if(CTX!=null) copyToUPlate(CTX!!,logPath+File.separator+srcFileName)
+            }
+        }
         return true
+    }
+    private fun getExtreranelUsbPaths(context: Context):Array<String>?{
+        try {
+            val sm = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
+            val paths = StorageManager::class.java.getMethod("getVolumePaths",null).invoke(sm,null) as? Array<String>
+            val result = arrayListOf<String>()
+            if(!paths.isNullOrEmpty()){
+                val size = paths.size
+                for (i in 0 until size){
+                    val p = paths[i]
+                    val f = File(p)
+                    if(p != getSDPath() && f.exists()){
+                        if(f.freeSpace>100){
+                            result.add(p)
+                            log(p)
+                        }
+                    }
+                }
+            }
+            return result.toTypedArray()
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
+        return null
+
+    }
+    private fun getSDPath():String?{
+        if(Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED){
+            return Environment.getExternalStorageDirectory().toString()
+        }
+        return null
+    }
+
+    private fun copyToUPlate(context: Context,srcPath:String){
+        try {
+            val u = getExtreranelUsbPaths(context)
+            if(!u.isNullOrEmpty()){
+                val desPath = u[0]+"/cooler/"
+                val desFile = File(desPath)
+                if(!desFile.exists()){
+                    desFile.mkdirs()
+                }
+                //复制到U盘
+                Runtime.getRuntime().exec("cp $srcPath $desPath")
+                Runtime.getRuntime().exec("ls -l $desPath")
+            }
+        }catch (e:Exception){}
     }
 
 }

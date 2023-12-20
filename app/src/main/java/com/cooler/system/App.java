@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.cooler.system.util.MyCrashHandler;
 import com.cooler.system.util.Util;
 import com.gyf.immersionbar.ImmersionBar;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -34,6 +35,7 @@ public class App extends Application {
         MMKV.initialize(this);
         sWidth = Math.max(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
         sHeight = Math.min(Resources.getSystem().getDisplayMetrics().widthPixels,Resources.getSystem().getDisplayMetrics().heightPixels);
+        MyCrashHandler.Companion.getInstance().init(context);
     }
 
     @Override

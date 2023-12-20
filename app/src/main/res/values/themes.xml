@@ -18,6 +18,12 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="TransTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/transparency</item>
+        <item name="android:statusBarColor">@color/transparency</item>
+    </style>
 
     <style name="Theme.CoolerSystem.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

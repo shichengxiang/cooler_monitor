@@ -62,7 +62,7 @@ class Main2Activity : AppCompatActivity() {
 //        App.postDelay({
 //            var i = 0
 //            val j = 12 / i
-//        }, 1000)
+//        }, 2000)
         setContentView(bind.root)
         ImmersionBar.with(this).fullScreen(true).init()
         mMessageHandler = object : Handler(Looper.getMainLooper()) {
