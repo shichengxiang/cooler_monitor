@@ -34,4 +34,5 @@ class ErrorActivity : AppCompatActivity() {
         }
         view.findViewById<TextView>(R.id.tv_content).text = error
     }
+
 }
