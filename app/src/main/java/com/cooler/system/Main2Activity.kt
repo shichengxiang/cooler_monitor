@@ -8,6 +8,7 @@ import android.os.Message
 import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cooler.system.data.UserManager
@@ -15,6 +16,7 @@ import com.cooler.system.databinding.ActivityMainBinding
 import com.cooler.system.dialog.ActiveDialogUtil
 import com.cooler.system.dialog.ConfigDialog
 import com.cooler.system.entities.CoolerBean
+import com.cooler.system.network.BaseResponse
 import com.cooler.system.network.Client
 import com.cooler.system.util.*
 import com.google.gson.Gson
@@ -45,6 +47,7 @@ class Main2Activity : AppCompatActivity() {
     private var mDeviceCodes = arrayOf("")
     var timer: Timer? = null
     var pwd = StringBuffer()
+    var cacheBody: RequestBody? = null
     private var mMessageHandler: Handler? = null
 //    private var mMessageHandler = object : Handler(Looper.getMainLooper()) {
 //        override fun handleMessage(msg: Message) {
@@ -102,18 +105,23 @@ class Main2Activity : AppCompatActivity() {
                     pwd.setLength(0)
                 }
             }
+
             KeyEvent.KEYCODE_9 -> {
                 pwd.append(9)
             }
+
             KeyEvent.KEYCODE_7 -> {
                 pwd.append(7)
             }
+
             KeyEvent.KEYCODE_5 -> {
                 pwd.append(5)
             }
+
             KeyEvent.KEYCODE_2 -> {
                 pwd.append(2)
             }
+
             KeyEvent.KEYCODE_BACK -> {
                 ConfigDialog.show(this) { initServer() }
                 return true
@@ -136,6 +144,7 @@ class Main2Activity : AppCompatActivity() {
 
     private fun initServer() {
 //        mAdapter?.setList(ConvertBean.mCacheInfo)
+        cacheBody = null
         mDeviceCodes = Util.getDeviceCodes() ?: arrayOf()
         mAdapter?.initDevideCode(mDeviceCodes)
         mPerTime = Util.getPerTime()
@@ -185,32 +194,34 @@ class Main2Activity : AppCompatActivity() {
 //        mMessageHandler.removeMessages(1)
 //        mMessageHandler.sendEmptyMessageDelayed(1,mPerTime*1000L)
 //        CrashReport.testJavaCrash();
-
-        val map = hashMapOf<String, Any>().apply {
-            put("codes", mDeviceCodes)
-        }
-        val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
-        val obj = hashMapOf<String, String>().apply {
-            put("content", encrypStr)
-        }
-        val body =
-            Gson().toJson(obj).toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
-        Client.instance.requestInfo(body).observe(this@Main2Activity) {
-//            log("cessss  ${Gson().toJson(obj)}")
-            if (it?.isSuccess() == true) {
-                val listStr = it.data
-                mAdapter?.refreshData(listStr)
-            } else {
-                if (it.code != 200) {
-                    toast("${it?.code} 网络错误")
-                } else {
-                    toast(it?.message ?: "参数错误")
-                }
-                log("resposne == ${it?.message}")
+        if (cacheBody == null) {
+            val map = hashMapOf<String, Any>().apply {
+                put("codes", mDeviceCodes)
             }
-            mMessageHandler?.removeMessages(1)
-            mMessageHandler?.sendEmptyMessageDelayed(1, mPerTime * 1000L)
+            val encrypStr = EncryptionUtil.encrypToBase64Str(Gson().toJson(map))
+            val obj = hashMapOf<String, String>().apply {
+                put("content", encrypStr)
+            }
+            cacheBody = Gson().toJson(obj)
+                .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
         }
+        Client.instance.requestInfo(cacheBody!!).observe(this@Main2Activity,onMessage)
+    }
+
+    private var onMessage = Observer<BaseResponse<List<CoolerBean>>> {
+        if (it?.isSuccess() == true) {
+            val listStr = it.data
+            mAdapter?.refreshData(listStr)
+        } else {
+            if (it.code != 200) {
+                toast("${it?.code} 网络错误")
+            } else {
+                toast(it?.message ?: "参数错误")
+            }
+//                log("resposne == ${it?.message}")
+        }
+        mMessageHandler?.removeMessages(1)
+        mMessageHandler?.sendEmptyMessageDelayed(1, mPerTime * 1000L)
     }
 
     override fun onDestroy() {

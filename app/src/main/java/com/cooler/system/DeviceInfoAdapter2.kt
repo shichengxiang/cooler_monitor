@@ -146,16 +146,25 @@ class DeviceInfoAdapter2(var statusHeight: Int) :
         list?.forEach { c ->
             data.forEachIndexed { index, coolerBean ->
                 if (coolerBean.equipmentCode.equals(c.equipmentCode, true)) {
-                    coolerBean.asHaveDead = c.asHaveDead
-                    coolerBean.deadName = c.deadName
-                    coolerBean.deadAge = c.deadAge
-                    coolerBean.disableStateStr = c.disableStateStr
-                    coolerBean.deadGender = c.deadGender
-                    coolerBean.temperature = c.temperature
-                    coolerBean.realityInTime = c.realityInTime
-                    coolerBean.remark = c.remark
-//                    notifyItemChanged(index)
-                    notifyItemChanged(index, "part")
+                    if(coolerBean.asHaveDead  == c.asHaveDead &&
+                        coolerBean.deadName  == c.deadName &&
+                        coolerBean.deadAge  == c.deadAge &&
+                        coolerBean.disableStateStr  == c.disableStateStr &&
+                        coolerBean.deadGender  == c.deadGender &&
+                        coolerBean.temperature  == c.temperature &&
+                        coolerBean.realityInTime  == c.realityInTime &&
+                        coolerBean.remark  == c.remark){
+                    }else{
+                        coolerBean.asHaveDead = c.asHaveDead
+                        coolerBean.deadName = c.deadName
+                        coolerBean.deadAge = c.deadAge
+                        coolerBean.disableStateStr = c.disableStateStr
+                        coolerBean.deadGender = c.deadGender
+                        coolerBean.temperature = c.temperature
+                        coolerBean.realityInTime = c.realityInTime
+                        coolerBean.remark = c.remark
+                        notifyItemChanged(index, "part")
+                    }
                     return@forEachIndexed
                 }
             }
