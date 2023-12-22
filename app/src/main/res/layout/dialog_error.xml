@@ -26,6 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="关闭"
+        android:clickable="true"
+        android:focusable="true"
         android:textColor="@color/white"
         android:background="@drawable/rect_solid_blue_2"
         android:paddingHorizontal="23dp"
