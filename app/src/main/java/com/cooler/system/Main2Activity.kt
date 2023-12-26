@@ -8,6 +8,7 @@ import android.os.Message
 import android.view.KeyEvent
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -185,6 +186,7 @@ class Main2Activity : AppCompatActivity() {
         mMessageHandler?.removeMessages(1)
         mMessageHandler?.sendEmptyMessageDelayed(1, 1000)
     }
+    private var result:LiveData<BaseResponse<List<CoolerBean>>>?=null
 
     /**
      * 请求数据
@@ -205,7 +207,13 @@ class Main2Activity : AppCompatActivity() {
             cacheBody = Gson().toJson(obj)
                 .toRequestBody("application/json;charset=UTF-8".toMediaTypeOrNull())
         }
-        Client.instance.requestInfo(cacheBody!!).observe(this@Main2Activity,onMessage)
+        if(result == null){
+            result = Client.instance.requestInfo(cacheBody!!)
+        }
+        result?.removeObserver(onMessage)
+        result?.observe(this,onMessage)
+
+//        Client.instance.requestInfo(cacheBody!!).observe(this@Main2Activity,onMessage)
     }
 
     private var onMessage = Observer<BaseResponse<List<CoolerBean>>> {
@@ -221,7 +229,7 @@ class Main2Activity : AppCompatActivity() {
 //                log("resposne == ${it?.message}")
         }
         mMessageHandler?.removeMessages(1)
-        mMessageHandler?.sendEmptyMessageDelayed(1, mPerTime * 1000L)
+        mMessageHandler?.sendEmptyMessageDelayed(1, (mPerTime+2) * 1000L)
     }
 
     override fun onDestroy() {

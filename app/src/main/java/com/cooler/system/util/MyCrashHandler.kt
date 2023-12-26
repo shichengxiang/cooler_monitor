@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Environment
 import android.os.storage.StorageManager
 import com.cooler.system.ErrorActivity
+import com.cooler.system.Main2Activity
 import com.cooler.system.log
 import java.io.File
 import java.io.FileWriter
@@ -71,7 +72,7 @@ class MyCrashHandler :Thread.UncaughtExceptionHandler {
 //                val fw :FileWriter? = FileWriter(logPath+File.separator+srcFileName,false)
 //                fw?.write(error)
 //                fw?.close()
-                val intent = Intent(CTX,ErrorActivity::class.java)
+                val intent = Intent(CTX,Main2Activity::class.java)
                 intent.putExtra("error",error)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 CTX?.startActivity(intent)
